@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 06:32 PM
+-- Generation Time: Dec 08, 2021 at 06:46 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -173,7 +173,8 @@ INSERT INTO `vax` (`vaxId`, `vax_name`) VALUES
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `department`
@@ -186,6 +187,9 @@ ALTER TABLE `department`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`nsu_id`),
+  ADD UNIQUE KEY `nsu_mail` (`nsu_mail`),
+  ADD UNIQUE KEY `NID` (`NID`),
+  ADD UNIQUE KEY `birthRegNo` (`birthRegNo`),
   ADD KEY `dno` (`dno`),
   ADD KEY `vaxId` (`vaxId`);
 
@@ -194,6 +198,9 @@ ALTER TABLE `student`
 --
 ALTER TABLE `stuff`
   ADD PRIMARY KEY (`stuff_id`),
+  ADD UNIQUE KEY `nsu_mail` (`nsu_mail`),
+  ADD UNIQUE KEY `NID` (`NID`),
+  ADD UNIQUE KEY `birthRegNo` (`birthRegNo`),
   ADD KEY `dno` (`dno`),
   ADD KEY `vaxId` (`vaxId`);
 
