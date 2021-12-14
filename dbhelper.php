@@ -2,7 +2,7 @@
     class dbhelper{
 
         //generate random password
-        public static function getRandomPassword(){
+        public function getRandomPassword(){
             //genarating a new random password
             $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ";
             $digit = "0123456789";

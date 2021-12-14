@@ -79,8 +79,9 @@
                 //echo "User not found. <br>";
                 return FALSE; //Not found
             }else{
+                $helper = new dbhelper();
                 //genarating a new random password
-                $newpass = dbhelper::getRandomPassword();
+                $newpass = $helper->getRandomPassword();
                 //echo "<br>New password: ".$newpass."<br>";
 
                 //updating new password for the user
@@ -113,8 +114,9 @@
                 //echo "User not found. <br>";
                 return FALSE; //Not found
             }else{
+                $helper = new dbhelper();
                 //genarating a new random password
-                $newpass = dbhelper::getRandomPassword();
+                $newpass = $helper->getRandomPassword();
 
                 //updating new password for the user
                 $success = FALSE;
@@ -223,5 +225,6 @@
             }
             return $rows;
         }
+
     }
 ?>
