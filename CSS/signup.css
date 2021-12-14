@@ -1,31 +1,55 @@
-body
-{
+body{
     margin:0;
     padding:0;
-    background-color: black;
-    
 }
-.sign-up-form
-{
+
+.sign-up-form{
     width:300px;
     box-shadow: 0 0 3px 0 rgba(0,0,0,0,3);
     background: transparent;
     padding: 20px;
     margin:8% auto 0;
+    margin-top: 50px;
     text-align: center;
 }
-.sign-up-form h1
-{
-    color: #efeff3;
+
+.sign-up-form h1{
     margin-bottom: 30px;
 }
-.input-box
-{
+
+.sign-up-form button{
+    margin-top: 10px;
+}
+
+.input-box{
     border-radius: 20px;
     padding: 10px;
     margin: 10px 0;
     width: 100%;
     border: 1px solid #999;
     outline: none;
+}
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.sign-up-form p{
+    font-size: 14px;
+}
+
+.error{
+    color: rgba(255, 0, 0, 0.8); 
+}
+
+.form-error{
+    font-size: 12px !important;
+    margin: 0px;
+    color: rgba(255, 0, 0, 0.8); 
 }
