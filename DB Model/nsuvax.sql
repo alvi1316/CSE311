@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 06:46 PM
+-- Generation Time: Dec 09, 2021 at 07:07 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -75,7 +75,7 @@ INSERT INTO `department` (`dno`, `dname`) VALUES
 
 CREATE TABLE `student` (
   `nsu_id` bigint(10) NOT NULL,
-  `dno` int(1) NOT NULL,
+  `dno` int(1) DEFAULT NULL,
   `vaxId` int(2) DEFAULT NULL,
   `doseTaken` int(1) DEFAULT 0,
   `password` varchar(10) NOT NULL,
@@ -95,8 +95,8 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`nsu_id`, `dno`, `vaxId`, `doseTaken`, `password`, `fname`, `lname`, `nsu_mail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
-(1721427642, 1, 1, 1, 'abab23', 'Shah Alvi', 'Hossain', 'alvi.hossain@northsouth.edu', 1726354242, 'DHAKA', 80563467, '1997-04-06', NULL, 'M'),
-(1914455643, 4, NULL, 0, 'sdsda43', 'Fahim', 'Hasan', 'fahim.hasan@northsouth.edu', 1556454342, 'DHAKA', 21238879, '0199-05-05', 44210503, 'M'),
+(1721427642, 1, 1, 1, 'BpMxDkY6', 'Shah Alvi', 'Hossain', 'alvi.hossain@northsouth.edu', 1726354242, 'DHAKA', 80563467, '1997-04-06', NULL, 'M'),
+(1914455643, 4, NULL, 0, 'test123', 'Fahim', 'Hasan', 'fahim.hasan@northsouth.edu', 1556454342, 'DHAKA', 21238879, '0199-05-05', 44210503, 'M'),
 (2011264642, 6, NULL, 0, 'joker32', 'Marium', 'Begum', 'marium.begum@northsouth.edu', 1745656915, 'BARISHAL', 86234736, '2001-05-04', 78822385, 'F'),
 (2012165642, 3, 3, 1, '@Aa21', 'Riad', 'Shafwan', 'riad.shafwan01@northsouth.edu', 1780898121, 'SYLHET', 34523436, '2000-01-25', 72626634, 'M'),
 (2013356642, 1, NULL, 0, 'sdfsfjh45', 'Md. Nahin', 'Islam', 'nahin.islam@northsouth.edu', 1645348962, 'DHAKA', 89927493, '2000-02-25', 17296892, 'M'),
@@ -120,13 +120,13 @@ INSERT INTO `student` (`nsu_id`, `dno`, `vaxId`, `doseTaken`, `password`, `fname
 
 CREATE TABLE `stuff` (
   `stuff_id` bigint(10) NOT NULL,
-  `dno` int(1) NOT NULL,
+  `dno` int(1) DEFAULT NULL,
   `vaxId` int(2) DEFAULT NULL,
   `doseTaken` int(1) DEFAULT 0,
   `password` varchar(10) NOT NULL,
   `fname` varchar(30) DEFAULT NULL,
   `lname` varchar(30) NOT NULL,
-  `designation` varchar(20) NOT NULL,
+  `designation` varchar(20) DEFAULT NULL,
   `nsu_mail` varchar(30) NOT NULL,
   `phone` int(11) DEFAULT NULL,
   `city` varchar(10) DEFAULT NULL,
@@ -141,8 +141,8 @@ CREATE TABLE `stuff` (
 --
 
 INSERT INTO `stuff` (`stuff_id`, `dno`, `vaxId`, `doseTaken`, `password`, `fname`, `lname`, `designation`, `nsu_mail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
-(1852854758, 1, 1, 2, 'xbcgsa', 'Mohammad Forhad', 'Uddin', 'Professor', 'mohammad.forhad@northsouth.edu', 1727463535, 'DHAKA', 94479791, '1972-04-08', NULL, 'M'),
-(3740793446, 2, 2, 2, 'acasew', 'Rezaul', 'Karim', 'Lecturer', 'rezaul.karim@northsouth.edu', 1923746252, 'DHAKA', 79922644, '1977-03-01', NULL, 'M'),
+(1852854758, 1, 1, 2, 'rhboejY9', 'Mohammad Forhad', 'Uddin', 'Professor', 'mohammad.forhad@northsouth.edu', 1727463535, 'DHAKA', 94479791, '1972-04-08', NULL, 'M'),
+(3740793446, 2, 2, 2, 'test123', 'Rezaul', 'Karim', 'Lecturer', 'rezaul.karim@northsouth.edu', 1923746252, 'DHAKA', 79922644, '1977-03-01', NULL, 'M'),
 (5990164093, 3, 3, 2, 'erterw', 'Azreen', 'Benazir', 'Assistant Lecturer', 'azreen.benazir@northsouth.edu', 1836251036, 'DHAKA', 41945528, '1980-05-09', NULL, 'F');
 
 -- --------------------------------------------------------
