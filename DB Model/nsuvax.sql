@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2021 at 11:01 AM
+-- Generation Time: Dec 16, 2021 at 01:22 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -70,17 +70,51 @@ INSERT INTO `department` (`dno`, `dname`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student`
+-- Table structure for table `staff`
 --
 
-CREATE TABLE `student` (
-  `nsu_id` bigint(10) NOT NULL,
+CREATE TABLE `staff` (
+  `staffId` bigint(10) NOT NULL,
   `dno` int(1) NOT NULL,
   `vaxId` int(2) DEFAULT NULL,
   `doseTaken` int(1) DEFAULT 0,
   `password` varchar(10) NOT NULL,
   `name` varchar(40) NOT NULL,
-  `nsu_mail` varchar(40) NOT NULL,
+  `designation` varchar(20) DEFAULT NULL,
+  `nsumail` varchar(30) NOT NULL,
+  `phone` varchar(11) DEFAULT NULL,
+  `city` varchar(10) DEFAULT NULL,
+  `NID` varchar(16) DEFAULT NULL,
+  `DOB` date DEFAULT NULL,
+  `birthRegNo` varchar(16) DEFAULT NULL,
+  `gender` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `staff`
+--
+
+INSERT INTO `staff` (`staffId`, `dno`, `vaxId`, `doseTaken`, `password`, `name`, `designation`, `nsumail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
+(1852854758, 1, 1, 2, 'xbcgsa', 'Mohammad Forhad Uddin', 'Professor', 'mohammad.forhad@northsouth.edu', '01727463535', 'DHAKA', '94479791', '1972-04-08', NULL, 'M'),
+(2353029203, 4, 2, 1, 'fgdfg', 'Ziaul Haque', 'Assistant Professor', 'ziaul.haque@northsouth.edu', '01867746259', 'DHAKA', '77922633', '1989-04-09', NULL, 'M'),
+(3740793446, 2, 2, 2, 'acasew', 'Rezaul Karim', 'Lecturer', 'rezaul.karim@northsouth.edu', '01923746252', 'DHAKA', '79922644', '1977-03-01', NULL, 'M'),
+(5990164093, 3, 3, 2, 'erterw', 'Azreen Benazir', 'Assistant Lecturer', 'azreen.benazir@northsouth.edu', '01836251036', 'DHAKA', '41945528', '1980-05-09', NULL, 'F'),
+(9893264910, 5, 1, 0, 'ertret', 'Shafin Rahman', 'Lecturer', 'shafin.rahman@northsouth.edu', '01678251035', 'DHAKA', '12945556', '1987-03-09', NULL, 'M');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `nsuId` bigint(10) NOT NULL,
+  `dno` int(1) NOT NULL,
+  `vaxId` int(2) DEFAULT NULL,
+  `doseTaken` int(1) DEFAULT 0,
+  `password` varchar(10) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `nsumail` varchar(40) NOT NULL,
   `phone` varchar(11) DEFAULT NULL,
   `city` varchar(10) DEFAULT NULL,
   `NID` varchar(16) DEFAULT NULL,
@@ -93,7 +127,7 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`nsu_id`, `dno`, `vaxId`, `doseTaken`, `password`, `name`, `nsu_mail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
+INSERT INTO `student` (`nsuId`, `dno`, `vaxId`, `doseTaken`, `password`, `name`, `nsumail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
 (1721427642, 1, 1, 1, 'abab23', 'Shah Alvi Hossain', 'alvi.hossain@northsouth.edu', '01726354242', 'DHAKA', '80563467', '1997-04-06', NULL, 'M'),
 (1914455643, 4, 3, 0, 'sdsda43', 'Fahim Hasan', 'fahim.hasan@northsouth.edu', '01556454342', 'DHAKA', '21238879', '0199-05-05', '44210503', 'M'),
 (2011264642, 6, 3, 0, 'joker32', 'Marium Begum', 'marium.begum@northsouth.edu', '01745656915', 'BARISHAL', '86234736', '2001-05-04', '78822385', 'F'),
@@ -110,40 +144,6 @@ INSERT INTO `student` (`nsu_id`, `dno`, `vaxId`, `doseTaken`, `password`, `name`
 (2113452642, 7, 1, 2, 'UseLess32', 'Zahid hasan', 'zahid.hasan08@northsouth.edu', '01985498915', 'CHOTTOGRAM', '34523736', '2000-07-07', '24088795', 'M'),
 (2114954642, 2, 3, 1, '56rio', 'Nusrat Jahan Faria', 'nusrat.jahan06@northsouth.edu', '01965481237', 'BOGRA', '54523473', '2001-07-09', '12085370', 'F'),
 (2123674642, 8, 3, 2, 'No212', 'Monira Islam', 'monira.islam04@northsouth.edu', '01798698915', 'DHAKA', '45234736', '2002-08-21', NULL, 'F');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `stuff`
---
-
-CREATE TABLE `stuff` (
-  `stuff_id` bigint(10) NOT NULL,
-  `dno` int(1) NOT NULL,
-  `vaxId` int(2) DEFAULT NULL,
-  `doseTaken` int(1) DEFAULT 0,
-  `password` varchar(10) NOT NULL,
-  `name` varchar(40) NOT NULL,
-  `designation` varchar(20) DEFAULT NULL,
-  `nsu_mail` varchar(30) NOT NULL,
-  `phone` varchar(11) DEFAULT NULL,
-  `city` varchar(10) DEFAULT NULL,
-  `NID` varchar(16) DEFAULT NULL,
-  `DOB` date DEFAULT NULL,
-  `birthRegNo` varchar(16) DEFAULT NULL,
-  `gender` varchar(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `stuff`
---
-
-INSERT INTO `stuff` (`stuff_id`, `dno`, `vaxId`, `doseTaken`, `password`, `name`, `designation`, `nsu_mail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
-(1852854758, 1, 1, 2, 'xbcgsa', 'Mohammad Forhad Uddin', 'Professor', 'mohammad.forhad@northsouth.edu', '01727463535', 'DHAKA', '94479791', '1972-04-08', NULL, 'M'),
-(2353029203, 4, 2, 1, 'fgdfg', 'Ziaul Haque', 'Assistant Professor', 'ziaul.haque@northsouth.edu', '01867746259', 'DHAKA', '77922633', '1989-04-09', NULL, 'M'),
-(3740793446, 2, 2, 2, 'acasew', 'Rezaul Karim', 'Lecturer', 'rezaul.karim@northsouth.edu', '01923746252', 'DHAKA', '79922644', '1977-03-01', NULL, 'M'),
-(5990164093, 3, 3, 2, 'erterw', 'Azreen Benazir', 'Assistant Lecturer', 'azreen.benazir@northsouth.edu', '01836251036', 'DHAKA', '41945528', '1980-05-09', NULL, 'F'),
-(9893264910, 5, 1, 0, 'ertret', 'Shafin Rahman', 'Lecturer', 'shafin.rahman@northsouth.edu', '01678251035', 'DHAKA', '12945556', '1987-03-09', NULL, 'M');
 
 -- --------------------------------------------------------
 
@@ -208,22 +208,22 @@ ALTER TABLE `department`
   ADD UNIQUE KEY `dname` (`dname`);
 
 --
--- Indexes for table `student`
+-- Indexes for table `staff`
 --
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`nsu_id`),
-  ADD UNIQUE KEY `nsu_mail` (`nsu_mail`),
+ALTER TABLE `staff`
+  ADD PRIMARY KEY (`staffId`),
+  ADD UNIQUE KEY `nsu_mail` (`nsumail`),
   ADD UNIQUE KEY `NID` (`NID`),
   ADD UNIQUE KEY `birthRegNo` (`birthRegNo`),
   ADD KEY `dno` (`dno`),
   ADD KEY `vaxId` (`vaxId`);
 
 --
--- Indexes for table `stuff`
+-- Indexes for table `student`
 --
-ALTER TABLE `stuff`
-  ADD PRIMARY KEY (`stuff_id`),
-  ADD UNIQUE KEY `nsu_mail` (`nsu_mail`),
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`nsuId`),
+  ADD UNIQUE KEY `nsu_mail` (`nsumail`),
   ADD UNIQUE KEY `NID` (`NID`),
   ADD UNIQUE KEY `birthRegNo` (`birthRegNo`),
   ADD KEY `dno` (`dno`),
@@ -249,18 +249,18 @@ ALTER TABLE `vaxcompany`
 --
 
 --
+-- Constraints for table `staff`
+--
+ALTER TABLE `staff`
+  ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `department` (`dno`),
+  ADD CONSTRAINT `staff_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`);
+
+--
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
   ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `department` (`dno`),
   ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`);
-
---
--- Constraints for table `stuff`
---
-ALTER TABLE `stuff`
-  ADD CONSTRAINT `stuff_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `department` (`dno`),
-  ADD CONSTRAINT `stuff_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`);
 
 --
 -- Constraints for table `vax`
