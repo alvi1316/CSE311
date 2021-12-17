@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2021 at 06:44 PM
+-- Generation Time: Dec 17, 2021 at 09:57 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -75,8 +75,8 @@ INSERT INTO `department` (`dno`, `dname`) VALUES
 
 CREATE TABLE `staff` (
   `staffId` bigint(10) NOT NULL,
-  `dno` int(5) NOT NULL,
-  `vaxId` int(5) NOT NULL,
+  `dno` int(5) DEFAULT NULL,
+  `vaxId` int(5) DEFAULT NULL,
   `doseTaken` int(1) DEFAULT 0,
   `password` varchar(10) NOT NULL,
   `name` varchar(40) NOT NULL,
@@ -109,9 +109,9 @@ INSERT INTO `staff` (`staffId`, `dno`, `vaxId`, `doseTaken`, `password`, `name`,
 
 CREATE TABLE `student` (
   `nsuId` bigint(10) NOT NULL,
-  `dno` int(5) NOT NULL,
+  `dno` int(5) DEFAULT NULL,
   `vaxId` int(5) DEFAULT NULL,
-  `doseTaken` int(1) DEFAULT NULL,
+  `doseTaken` int(1) DEFAULT 0,
   `password` varchar(10) NOT NULL,
   `name` varchar(40) NOT NULL,
   `nsuMail` varchar(40) NOT NULL,
@@ -154,7 +154,7 @@ INSERT INTO `student` (`nsuId`, `dno`, `vaxId`, `doseTaken`, `password`, `name`,
 CREATE TABLE `vax` (
   `vaxId` int(5) NOT NULL,
   `vaxName` varchar(10) NOT NULL,
-  `companyId` int(5) NOT NULL
+  `companyId` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -276,21 +276,21 @@ ALTER TABLE `vaxcompany`
 -- Constraints for table `staff`
 --
 ALTER TABLE `staff`
-  ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `department` (`dno`),
-  ADD CONSTRAINT `staff_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`);
+  ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `department` (`dno`) ON DELETE SET NULL,
+  ADD CONSTRAINT `staff_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
-  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `department` (`dno`),
-  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`);
+  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `department` (`dno`) ON DELETE SET NULL,
+  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `vax`
 --
 ALTER TABLE `vax`
-  ADD CONSTRAINT `vax_ibfk_1` FOREIGN KEY (`companyId`) REFERENCES `vaxcompany` (`companyId`);
+  ADD CONSTRAINT `vax_ibfk_1` FOREIGN KEY (`companyId`) REFERENCES `vaxcompany` (`companyId`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
