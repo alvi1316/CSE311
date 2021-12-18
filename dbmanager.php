@@ -514,15 +514,6 @@
             return $rows;
         }
 
-        function getAllVaxCompany(){
-            $sql = "SELECT * FROM `vaxcompany` ORDER BY `companyId` ASC";
-            $result = $this->con->query($sql);
-            $rows = array();
-            foreach ($result as $row) {
-                $rows[] = $row;
-            }
-            return $rows;
-        }
 
     }
 ?>
