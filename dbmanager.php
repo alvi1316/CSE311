@@ -26,6 +26,38 @@
             return $isValid;
         }
 
+        //Student: Total registered - Male - Female
+        function getTotalRegisteredStudent(){
+            $qry = "SELECT 
+                    COUNT(*) AS 'total',
+                    SUM(CASE WHEN(gender = 'M') THEN 1 ELSE 0 END) AS 'male',
+                    SUM(CASE WHEN(gender = 'F') THEN 1 ELSE 0 END) AS 'female'
+                    FROM student";
+
+            $result = $this->con->query($qry);
+            $rows = array();
+            foreach ($result as $row) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+
+        //Staff: Total registered - Male - Female
+        function getTotalRegisteredStaff(){
+            $qry = "SELECT 
+                    COUNT(*) AS 'total',
+                    SUM(CASE WHEN(gender = 'M') THEN 1 ELSE 0 END) AS 'male',
+                    SUM(CASE WHEN(gender = 'F') THEN 1 ELSE 0 END) AS 'female'
+                    FROM staff";
+
+            $result = $this->con->query($qry);
+            $rows = array();
+            foreach ($result as $row) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+
         //fully vaccinated student out of total student group by department
         function getFullVaccinatedStudent(){
             $qry = "SELECT d.dname AS 'dept',
@@ -514,15 +546,6 @@
             return $rows;
         }
 
-        function getAllVaxCompany(){
-            $sql = "SELECT * FROM `vaxcompany` ORDER BY `companyId` ASC";
-            $result = $this->con->query($sql);
-            $rows = array();
-            foreach ($result as $row) {
-                $rows[] = $row;
-            }
-            return $rows;
-        }
 
     }
 ?>
