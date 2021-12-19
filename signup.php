@@ -13,31 +13,42 @@
       <h2 align="center">NSU Vaccine Management System</h2>
       <p align="center">Fill up the form to create account</p>
       <hr>
-      <p class="error">Signup failed!</p>
-      <form>
-        <input type="text" class="input-box" placeholder="Your Full Name">
-        <p class="form-error">Please enter your full name</p>
+      <p id="error" class="error">Signup failed!</p>
+      <form id="signUpForm" method="post" action="./panel.php">
+        <input id="nameInput" type="text" class="input-box" placeholder="Your Full Name">
+        <p id="nameError" class="form-error">Please enter your full name</p>
 
-        <input type="number" class="input-box" placeholder="Your NSU ID">
-        <p class="form-error">Please enter a valid NSU ID</p>
+        <input id="idInput" type="number" class="input-box" placeholder="Your NSU ID">
+        <p id="idError" class="form-error">Please enter a valid NSU ID</p>
 
-        <input type="email" class="input-box" placeholder="Your NSU Email">
-        <p class="form-error">Please enter a valid NSU email</p>
+        <input id="emailInput" type="email" class="input-box" placeholder="Your NSU Email">
+        <p id="emailError" class="form-error">Please enter a valid NSU email</p>
 
-        <input type="Password" class="input-box" placeholder="Your Password">
-        <p class="form-error">Password length must be minimum 12 character and should contain atleast one character and one number</p>
+        <input id="passwordInput" type="Password" class="input-box" placeholder="Your Password">
+        <p id="passwordError" class="form-error">Password length must be minimum 8 character and should contain atleast one character and one number</p>
 
-        <input type="password" class="input-box" placeholder="Confirm Your Password">
-        <p class="form-error">Password doesn't match</p>
+        <input id="confirmPasswordInput" type="password" class="input-box" placeholder="Confirm Your Password">
+        <p id="confirmPasswordError" class="form-error">Password doesn't match</p>
 
-        <button type="button" class="signup-btn"> Sign up</button>
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender">
+          <option value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="O">Other</option>
+        </select>
+        <label for="dept">Department:</label>
+        <select name="dept" id="dept">          
+        </select>
+
+        <button type="submit" class="signup-btn"> Sign up</button>
         <hr>
 
         <p>Already have an account?<a href="index.php">Login!</a></p>
       </form>
     </div>
+
+    <script src="./JS/signup.js"></script>
+
   </body>
-
-
 
 </html>

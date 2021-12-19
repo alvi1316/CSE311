@@ -18,7 +18,9 @@ body{
 }
 
 .sign-in-form button{
+    margin: 0 auto;
     margin-top: 10px;
+    display: block;
 }
 
 .input-box{
@@ -36,4 +38,22 @@ body{
 
 .error{
     color: rgba(255, 0, 0, 0.8); 
+    display: none;
+}
+
+.form-error{
+    font-size: 12px !important;
+    margin: 0px;
+    color: rgba(255, 0, 0, 0.8); 
+    display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
