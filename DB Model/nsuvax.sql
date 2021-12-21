@@ -101,7 +101,12 @@ INSERT INTO `staff` (`staffId`, `dno`, `vaxId`, `doseTaken`, `firstDose`, `secon
 (2353029203, 4, 2, 1, '2021-06-11', NULL, 'fgdfg', 'Ziaul Haque', 'Lecturer', 'ziaul.haque@northsouth.edu', '01867746259', 'DHAKA', '77922633', '1989-04-09', NULL, 'M'),
 (3740793446, 2, 2, 2, '2021-07-13', '2021-09-22', 'acasew', 'Rezaul Karim', 'Lecturer', 'rezaul.karim@northsouth.edu', '01923746252', 'DHAKA', '79922644', '1977-03-01', NULL, 'M'),
 (5990164093, 3, 3, 2, '2021-08-08', '2021-09-23', 'erterw', 'Azreen Benazir', 'Assistant Lecturer', 'azreen.benazir@northsouth.edu', '01836251036', 'DHAKA', '41945528', '1980-05-09', NULL, 'F'),
-(9893264910, 5, 1, 0, NULL, NULL, 'ertret', 'Shafin Rahman', 'Lecturer', 'shafin.rahman@northsouth.edu', '01678251035', 'DHAKA', '12945556', '1987-03-09', NULL, 'M');
+(9893264910, 5, NULL, 0, NULL, NULL, 'ertret', 'Shafin Rahman', 'Lecturer', 'shafin.rahman@northsouth.edu', '01678251035', 'DHAKA', '12945556', '1987-03-09', NULL, 'M'),
+(1112767429, 1, 4, 1, '2021-07-11', NULL, 'aghste123', 'Shafiul Alam', 'Professor', 'shafiul.alam@northsouth.edu', '01727463555', 'DHAKA', '13369251', '1975-04-08', NULL, 'M'),
+(2053181255, 2, 5, 2, '2021-08-17', '2021-09-17', 'fgdfg43', 'Farisul Islam', 'Lecturer', 'farisul.islam@northsouth.edu', '01368846259', 'DHAKA', '20418928', '1988-04-09', NULL, 'M'),
+(1924768620, 3, 3, 2, '2021-09-10', '2021-10-22', 'acasew55', 'Rizvin Kabir', 'Lecturer', 'rizvinkabir@northsouth.edu', '01733746252', 'DHAKA', '20330717', '1975-03-01', NULL, 'F'),
+(1583073355, 5, 4, 1, '2021-06-09', NULL, 'e67rterw', 'Munira Khan', 'Assistant Professor', 'munira.khan@northsouth.edu', '01666251036', 'DHAKA', '18249243', '1989-05-09', NULL, 'F'),
+(1909782731, 6, NULL, 0, NULL, NULL, 'e99rtret', 'Golam Rabbani', 'Lecturer', 'golam.rabbani@northsouth.edu', '01778251035', 'DHAKA', '12077268', '1986-03-09', NULL, 'M');
 
 -- --------------------------------------------------------
 
@@ -133,17 +138,17 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`nsuId`, `dno`, `vaxId`, `doseTaken`, `firstDose`, `secondDose`, `password`, `name`, `nsuMail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
 (1721427642, 1, 1, 1, '2021-07-23', NULL, 'abab23', 'Shah Alvi Hossain', 'alvi.hossain@northsouth.edu', '01726354242', 'DHAKA', '80563467', '1997-04-06', NULL, 'M'),
-(1914455643, 4, 3, 0, NULL, NULL, 'sdsda43', 'Fahim Hasan', 'fahim.hasan@northsouth.edu', '01556454342', 'DHAKA', '21238879', '0199-05-05', '44210503', 'M'),
-(2011264642, 6, 3, 0, NULL, NULL, 'joker32', 'Marium Begum', 'marium.begum@northsouth.edu', '01745656915', 'BARISHAL', '86234736', '2001-05-04', '78822385', 'F'),
+(1914455643, 4, NULL, 0, NULL, NULL, 'sdsda43', 'Fahim Hasan', 'fahim.hasan@northsouth.edu', '01556454342', 'DHAKA', '21238879', '0199-05-05', '44210503', 'M'),
+(2011264642, 6, NULL, 0, NULL, NULL, 'joker32', 'Marium Begum', 'marium.begum@northsouth.edu', '01745656915', 'BARISHAL', '86234736', '2001-05-04', '78822385', 'F'),
 (2012165642, 3, 3, 1, '2021-07-04', NULL, '@Aa21', 'Riad Shafwan Riad', 'shafwan01@northsouth.edu', '01780898121', 'SYLHET', '34523436', '2000-01-25', '72626634', 'M'),
-(2013356642, 1, 3, 0, NULL, NULL, 'sdfsfjh45', 'Md. Nahin Islam', 'nahin.islam@northsouth.edu', '01645348962', 'DHAKA', '89927493', '2000-02-25', '17296892', 'M'),
+(2013356642, 1, NULL, 0, NULL, NULL, 'sdfsfjh45', 'Md. Nahin Islam', 'nahin.islam@northsouth.edu', '01645348962', 'DHAKA', '89927493', '2000-02-25', '17296892', 'M'),
 (2013664642, 1, 1, 2, '2021-07-31', '2021-11-15', 'asif123', 'Ihsanul Haque Asif', 'ihsanul.asif@northsouth.edu', '01680898915', 'DHAKA', '96145789', '2001-06-09', '28427840', 'M'),
-(2013994642, 4, 2, 0, NULL, NULL, '##alpha', 'Isha Khan', 'isha.esha@northsouth.edu', '01885890915', 'FENI', '89234736', '2000-07-01', '42786139', 'F'),
+(2013994642, 4, NULL, 0, NULL, NULL, '##alpha', 'Isha Khan', 'isha.esha@northsouth.edu', '01885890915', 'FENI', '89234736', '2000-07-01', '42786139', 'F'),
 (2014534632, 2, 2, 2, '2021-09-05', '2021-10-05', 'jon123', 'Jon Doe', 'jon.doe@northsouth.edu', '01725367846', 'COMILLA', '014579352', '1999-01-21', NULL, 'M'),
 (2023554652, 5, 2, 1, '2021-06-21', NULL, 'asesa32', 'Sadia Islam', 'sadia.islam@northsouth.edu', '01856747416', 'DHAKA', '73544523', '2002-02-25', '81322515', 'F'),
 (2024521642, 4, 2, 1, '2021-09-21', NULL, 'play@1', 'Janntul Ferdaus', 'jannatul.ferdaus03@northsouth.edu', '01530898915', 'CUMILLA', '98745473', '2000-04-29', '16283457', 'F'),
 (2033124642, 7, 1, 2, '2021-5-30', '2021-07-18', '@rrr123', 'Abrar Mahmud', 'abrar.mahmud02@northsouth.edu', '01965478123', 'KHULNA', '99734736', '2001-10-23', '60568282', 'M'),
-(2033232642, 6, 1, 0, NULL, NULL, 'B007', 'Shanto Islam', 'shanto.islam03@northsouth.edu', '01698788915', 'DHAKA', '85234754', '2000-02-18', '68384763', 'M'),
+(2033232642, 6, NULL, 0, NULL, NULL, 'B007', 'Shanto Islam', 'shanto.islam03@northsouth.edu', '01698788915', 'DHAKA', '85234754', '2000-02-18', '68384763', 'M'),
 (2112370642, 5, 2, 2, '2021-05-24', '2021-07-12', 'hasan121', 'S M Mahedi Hasan', 'mahedi.hasan06@northsouth.edu', '01621887399', 'DHAKA', '98645131', '2001-08-19', '30993819', 'M'),
 (2113452642, 7, 1, 2, '2021-07-31', '2021-11-15', 'UseLess32', 'Zahid hasan', 'zahid.hasan08@northsouth.edu', '01985498915', 'CHOTTOGRAM', '34523736', '2000-07-07', '24088795', 'M'),
 (2114954642, 2, 3, 1, '2021-08-04', NULL, '56rio', 'Nusrat Jahan Faria', 'nusrat.jahan06@northsouth.edu', '01965481237', 'BOGRA', '54523473', '2001-07-09', '12085370', 'F'),
