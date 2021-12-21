@@ -11,7 +11,24 @@ ul {
     background-color: #333;
 }
 
-li {
+.left-li{
+    float: left;
+}
+
+.search-input{
+    border-radius: 20px;
+    padding: 5px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #999;
+    outline: none;
+}
+
+.search-button{
+    margin: 13px 20px;
+}
+
+.right-li {
     float: right;
 }
 
@@ -28,34 +45,70 @@ li a:hover:not(.active) {
     cursor: pointer;
 }
 
-.table-div{
-    margin-top: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
+#chart_div_1{
+    width: 90%;
+    height: 200px;
+    border: 2px solid black;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    border: 5px solid #897cad;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #000000;
+#piechart{
     text-align: center;
-    padding: 8px;
 }
 
-th {
-    background-color: #dddddd;
+#piechart1{
+    width: 45%;
+    height: 400px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    display: inline-block;
 }
 
-.catagory{
-    background-color: #333;
-    color: white;
+#piechart2{
+    width: 45%;
+    height: 400px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    display: inline-block;
 }
 
-.catagory-1{
-    background-color: rgb(200, 200, 200);
+#graphchart1{
+    width: 90%;
+    height: 400px;
+    border: 2px solid black;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
+
+#graphchart2{
+    width: 90%;
+    height: 400px;
+    border: 2px solid black;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#chart_div_2{
+    width: 90%;
+    height: 800px;
+    border: 2px solid black;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#chart_div_3{
+    width: 90%;
+    height: 600px;
+    border: 2px solid black;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
