@@ -160,10 +160,12 @@
             return $rows;
         }
 
+        //Student: Full Vaccinated — Half Vaccinated — Non Vaccinated
         function getTotalVaccinatedStudent(){
             $qry = "SELECT
-                    SUM(CASE WHEN(doseTaken = 2) THEN 1 ELSE 0 END) AS 'vaccinated',
-                    COUNT(*) AS 'total'
+                    SUM(CASE WHEN(doseTaken = 2) THEN 1 ELSE 0 END) AS 'full',
+                    SUM(CASE WHEN(doseTaken = 1) THEN 1 ELSE 0 END) AS 'half',
+                    SUM(CASE WHEN(doseTaken = 0) THEN 1 ELSE 0 END) AS 'non'
                     FROM student";
             
             $result = $this->con->query($qry);
@@ -171,10 +173,12 @@
             return $row;
         }
 
+        //Staff: Full Vaccinated — Half Vaccinated — Non Vaccinated
         function getTotalVaccinatedStaff(){
             $qry = "SELECT
-                    SUM(CASE WHEN(doseTaken = 2) THEN 1 ELSE 0 END) AS 'vaccinated',
-                    COUNT(*) AS 'total'
+                    SUM(CASE WHEN(doseTaken = 2) THEN 1 ELSE 0 END) AS 'full',
+                    SUM(CASE WHEN(doseTaken = 1) THEN 1 ELSE 0 END) AS 'half',
+                    SUM(CASE WHEN(doseTaken = 0) THEN 1 ELSE 0 END) AS 'non'
                     FROM staff";
             
             $result = $this->con->query($qry);
