@@ -408,8 +408,8 @@
         }
 
         //Student : Sign up or registration varification function 
-        function studentSignup($id,$pasword,$mail,$name,$dno,$gender){
-            $sql = "INSERT INTO student (nsuId,password,nsuMail,name,dno,gender) VALUES ('$id','$pasword','$mail','$name','$dno','$gender')";
+        function studentSignup($id,$pasword,$mail,$name,$dno,$NID,$birthRegNo,$gender){
+            $sql = "INSERT INTO student (nsuId,password,nsuMail,name,dno,NID,birthRegNo,gender) VALUES ('$id','$pasword','$mail','$name','$dno','$NID','$birthRegNo','$gender')";
         
             if($this->con->query($sql)){
                 return TRUE;
@@ -530,8 +530,8 @@
         }
 
         //staff : Sign up or registration varification function 
-        function staffSignup($id,$pasword,$mail,$name,$dno,$gender){
-            $sql = "INSERT INTO staff (staffId,password,nsuMail,name,dno,gender) VALUES ('$id','$pasword','$mail','$name','$dno','$gender')";
+        function staffSignup($id,$pasword,$mail,$name,$dno,$NID,$birthRegNo,$gender){
+            $sql = "INSERT INTO staff (staffId,password,nsuMail,name,dno,NID,birthRegNo,gender) VALUES ('$id','$pasword','$mail','$name','$dno','$NID','$birthRegNo','$gender')";
             
             if($this->con->query($sql)){
                 return TRUE;
