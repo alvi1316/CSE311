@@ -1,10 +1,10 @@
 <?php
-    session_start();
-    
-    if(!isset($_SESSION['id'])){
-        header('Location: index.php');
-    }
 
+    session_start();
+        
+    if(!isset($_SESSION['adminId'])){
+        header('Location: adminlogin.php');
+    }
 
     require_once("dbmanager.php");
     $db = new dbmanager();
@@ -16,142 +16,247 @@
     $fvf = $db->getFullVaccinatedStaff(); 
     $hvf = $db->getHalfVaccinatedStaff();  
     $nvf = $db->getNotVaccinatedStaff();
-?>
+    $tvs = $db->getTotalVaccinatedStudent();
+    $tvf = $db->getTotalVaccinatedStaff();
+    $sfdd = $db->getStudentFirstDoseTakenByDate();
+    $ssdd = $db->getStudentSecondDoseTakenByDate();
+    $ffdd = $db->getStaffFirstDoseTakenByDate();
+    $fsdd = $db->getStaffSecondDoseTakenByDate();
 
+?>
 
 <!DOCTYPE html>
 <html>
 
     <head>
         <link rel="stylesheet" href="./CSS/adminpanel.css">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawMultSeries);
+
+            function drawMultSeries() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Type', 'Male', 'Female', { role: 'annotation' } ],
+                    ['Student', <?php echo $trs[0]['male'];?>, <?php echo $trs[0]['female'];?>, ''],
+                    ['Faculty-Member', <?php echo $trf[0]['male'];?>, <?php echo $trf[0]['female'];?>,  '']
+                ]);
+
+                var options = {
+                    title: 'Total Registered Student',
+                    legend: {
+                    position: 'top',
+                    maxLines: 3
+                    },
+                    bar: { groupWidth: '50%' },
+                    isStacked: true
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('chart_div_1'));
+                chart.draw(data, options);
+            }
+
+            
+            google.charts.setOnLoadCallback(drawRightY1);
+
+            function drawRightY1() {
+                data = google.visualization.arrayToDataTable([
+                    ['Department', 'Total Students', 'Students with 2nd dose', 'Students with 1st dose', 'Non-vaccinated students'],
+                    <?php
+                        for($i = 0; $i<count($fvs); $i++){
+                            print("['{$fvs[$i]['dept']}', {$fvs[$i]['total']}, {$fvs[$i]['fullVaccinated']}, {$hvs[$i]['halfVaccinated']}, {$nvs[$i]['notVaccinated']}],");
+                        }
+                    ?>                    
+                ]);
+
+                options = {
+                    legend: {
+                        position: 'top',
+                        maxLines: 3
+                    },
+                    title: 'Vaccination chart Student',
+                    colors: ['rgb(51, 102, 204)','rgb(16, 150, 24)','rgb(255, 153, 0)','rgb(220, 57, 18)'],
+                    bars: 'horizontal'
+                };
+                var materialChart = new google.visualization.BarChart(document.getElementById('chart_div_2'));
+                materialChart.draw(data, options);
+            }
+
+            google.charts.setOnLoadCallback(drawRightY2);
+
+            function drawRightY2() {
+                data = google.visualization.arrayToDataTable([
+                    ['Department', 'Total Faculty-members', 'Faculty-members with 2nd dose', 'Faculty-members with 1st dose', 'Non-vaccinated Faculty-members'],
+                    <?php
+                        for($i = 0; $i<count($fvf); $i++){
+                            print("['{$fvf[$i]['dept']}', {$fvf[$i]['total']}, {$fvf[$i]['fullVaccinated']}, {$hvf[$i]['halfVaccinated']}, {$nvf[$i]['notVaccinated']}],");
+                        }
+                    ?>                    
+                ]);
+
+                options = {
+                    legend: {
+                        position: 'top',
+                        maxLines: 3
+                    },
+                    title: 'Vaccination chart Faculty-members',
+                    colors: ['rgb(51, 102, 204)','rgb(16, 150, 24)','rgb(255, 153, 0)','rgb(220, 57, 18)'],
+                    bars: 'horizontal'
+                };
+                var materialChart = new google.visualization.BarChart(document.getElementById('chart_div_3'));
+                materialChart.draw(data, options);
+            }
+
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                var data1 = google.visualization.arrayToDataTable([
+                    ['Type', 'Student Count'],
+                    ['Fully Vaccinated',     <?php echo "{$tvs['full']}";?>],
+                    ['Non Vaccinated', <?php echo "{$tvs['non']}";?>],
+                    ['Half Vaccinated', <?php echo "{$tvs['half']}";?>]                    
+                ]);
+
+                var options1 = {
+                    title: 'Total Students Stats',
+                    pieHole: 0.4,
+                };
+
+                var data2 = google.visualization.arrayToDataTable([
+                    ['Type', 'Faculty-members Count'],
+                    ['Fully Vaccinated',     <?php echo "{$tvf['full']}";?>],
+                    ['Non Vaccinated', <?php echo "{$tvf['non']}";?>],
+                    ['Half Vaccinated', <?php echo "{$tvf['half']}";?>]                    
+                ]);
+
+                var options2 = {
+                    title: 'Total Faculty-members Stats',
+                    pieHole: 0.4,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+                chart.draw(data1, options1);
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+                chart.draw(data2, options2);
+            }
+
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(drawCurveTypes1);
+
+            function drawCurveTypes1() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('date', 'Date');
+                data.addColumn('number', 'First Dose');
+                data.addColumn('number', 'Second Dose');
+
+                data.addRows([
+                    <?php
+                        foreach($sfdd as $element){
+                            print("[new Date('{$element['firstDose']}'), {$element['total']}, null],");
+                        }
+                        foreach($ssdd as $element){
+                            print("[new Date('{$element['secondDose']}'), null, {$element['total']}],");
+                        }     
+                    ?>
+                ]);
+
+                var options = {
+                    title: 'Student Vaccination vs Date',
+                    interpolateNulls: true,
+                    colors: ['rgb(16, 150, 24)','rgb(255, 153, 0)'],
+                    legend: {
+                        position: 'top',
+                        maxLines: 3
+                    },
+                    hAxis: {
+                        title: 'Date',
+                        gridlines: {
+                            color: 'transparent'
+                        }
+                    },
+                    vAxis: {
+                        title: 'Total Vaccinated'
+                    },
+                    series: {
+                        1: {curveType: 'function'}
+                    },
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('graphchart1'));
+                chart.draw(data, options);
+            }
+
+            google.charts.setOnLoadCallback(drawCurveTypes2);
+
+            function drawCurveTypes2() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('date', 'Date');
+                data.addColumn('number', 'First Dose');
+                data.addColumn('number', 'Second Dose');
+
+                data.addRows([
+                    <?php
+                        foreach($ffdd as $element){
+                            print("[new Date('{$element['firstDose']}'), {$element['total']}, null],");
+                        }
+                        foreach($fsdd as $element){
+                            print("[new Date('{$element['secondDose']}'), null, {$element['total']}],");
+                        }     
+                    ?>
+                ]);
+
+                var options = {
+                    title: 'Faculty-Members Vaccination vs Date',
+                    interpolateNulls: true,
+                    colors: ['rgb(16, 150, 24)','rgb(255, 153, 0)'],
+                    legend: {
+                        position: 'top',
+                        maxLines: 3
+                    },
+                    hAxis: {
+                        title: 'Date',
+                        gridlines: {
+                            color: 'transparent'
+                        }
+                    },
+                    vAxis: {
+                        title: 'Total Vaccinated'
+                    },
+                    series: {
+                        1: {curveType: 'function'}
+                    },
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('graphchart2'));
+                chart.draw(data, options);
+            }
+
+        </script>
     </head>
 
     <body>
 
         <ul>
-            <li><a id="logout">Logout</a></li>
+            <li class="right-li"><a id="logout">Logout</a></li>
+            <li class="left-li"><input class="search-input" placeholder="NSU ID"></li>
+            <li class="left-li"><button class="search-button">Search</button></li>
+            
         </ul>
 
-        <div class="table-div">
-            <table>
-
-                <tr>
-                    <th class="catagory" colspan="2">Total</th>
-                </tr>
-
-                <tr>
-                    <th>Total Registered Student</th>
-                    <th>Total Registered faculty member</th>
-                </tr>
-
-                <tr>
-                    <td><?php echo $trs[0]['total']; ?></td>
-                    <td><?php echo $trf[0]['total']; ?></td>
-                </tr> 
-
-                <tr>
-                    <th class="catagory" colspan="2">Male</th>
-                </tr>
-
-                <tr>
-                    <th>Total Registered Student</th>
-                    <th>Total Registered faculty member</th>
-                </tr>
-
-                <tr>
-                    <td><?php echo $trs[0]['male']; ?></td>
-                    <td><?php echo $trf[0]['male']; ?></td>
-                </tr>
-
-                <tr>
-                    <th class="catagory" colspan="2">Female</th>
-                </tr>
-
-                <tr>
-                    <th>Total Registered Student</th>
-                    <th>Total Registered faculty member</th>
-                </tr>
-
-                <tr>
-                    <td><?php echo $trs[0]['female']; ?></td>
-                    <td><?php echo $trf[0]['female']; ?></td>
-                </tr>                  
-
-            </table>
-        </div>
-
-        <div class='table-div'>
-
-            <table>
-
-                <tr>
-                    <th class='catagory-1' colspan='4'>Student</th>
-                </tr>
-
-                <?php
-                    for($i = 0; $i<count($fvs); $i++){
-                        print("                            
-                            <tr>
-                                <th class='catagory' colspan='4'>{$fvs[$i]['dept']}</th>
-                            </tr>
-            
-                            <tr>
-                                <th>Number of fully vaccinated student</th>
-                                <th>Number of student with only 1st dose</th>
-                                <th>Number of non vaccinated student</th>
-                                <th>Number of total student</th>
-                            </tr>
-            
-                            <tr>
-                                <td>{$fvs[$i]['fullVaccinated']}</td>
-                                <td>{$hvs[$i]['halfVaccinated']}</td>
-                                <td>{$nvs[$i]['notVaccinated']}</td>
-                                <td>{$fvs[$i]['total']}</td>
-                            </tr>
-                        ");
-                    }
-                ?>
-               
-            </table>
-
-        </div>
-
-        <div class='table-div'>
-
-            <table>
-
-                <tr>
-                    <th class='catagory-1' colspan='4'>Faculty member</th>
-                </tr>
-
-                <?php
-                    for($i = 0; $i<count($fvf); $i++){
-                        print("                            
-                            <tr>
-                                <th class='catagory' colspan='4'>{$fvs[$i]['dept']}</th>
-                            </tr>
-            
-                            <tr>
-                                <th>Number of fully vaccinated student</th>
-                                <th>Number of student with only 1st dose</th>
-                                <th>Number of non vaccinated student</th>
-                                <th>Number of total student</th>
-                            </tr>
-            
-                            <tr>
-                                <td>{$fvf[$i]['fullVaccinated']}</td>
-                                <td>{$hvf[$i]['halfVaccinated']}</td>
-                                <td>{$nvf[$i]['notVaccinated']}</td>
-                                <td>{$fvf[$i]['total']}</td>
-                            </tr>
-                        ");
-                    }
-                ?>
-               
-            </table>
-
-        </div>
-
+        <div id="chart_div_1"></div>
+        <div id="piechart">
+            <div id="piechart1"></div>
+            <div id="piechart2"></div>
+        </div>       
+        <div id="graphchart1"></div>
+        <div id="graphchart2"></div>
+        <div id="chart_div_2"></div>
+        <div id="chart_div_3"></div>
         <script src="./JS/adminpanel.js"></script>
         
     </body>

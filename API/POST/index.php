@@ -32,7 +32,7 @@
 
         if($db->adminSignin($id, $password)){
             session_start();
-            $_SESSION['id'] = $id;
+            $_SESSION['adminId'] = $id;
             printJson(200, "OK", true);
         }else{
             printJson(404, "Not Found", null);

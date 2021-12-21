@@ -160,10 +160,12 @@
             return $rows;
         }
 
+        //Student: Full Vaccinated — Half Vaccinated — Non Vaccinated
         function getTotalVaccinatedStudent(){
             $qry = "SELECT
-                    SUM(CASE WHEN(doseTaken = 2) THEN 1 ELSE 0 END) AS 'vaccinated',
-                    COUNT(*) AS 'total'
+                    SUM(CASE WHEN(doseTaken = 2) THEN 1 ELSE 0 END) AS 'full',
+                    SUM(CASE WHEN(doseTaken = 1) THEN 1 ELSE 0 END) AS 'half',
+                    SUM(CASE WHEN(doseTaken = 0) THEN 1 ELSE 0 END) AS 'non'
                     FROM student";
             
             $result = $this->con->query($qry);
@@ -171,10 +173,12 @@
             return $row;
         }
 
+        //Staff: Full Vaccinated — Half Vaccinated — Non Vaccinated
         function getTotalVaccinatedStaff(){
             $qry = "SELECT
-                    SUM(CASE WHEN(doseTaken = 2) THEN 1 ELSE 0 END) AS 'vaccinated',
-                    COUNT(*) AS 'total'
+                    SUM(CASE WHEN(doseTaken = 2) THEN 1 ELSE 0 END) AS 'full',
+                    SUM(CASE WHEN(doseTaken = 1) THEN 1 ELSE 0 END) AS 'half',
+                    SUM(CASE WHEN(doseTaken = 0) THEN 1 ELSE 0 END) AS 'non'
                     FROM staff";
             
             $result = $this->con->query($qry);
@@ -276,7 +280,114 @@
             return (int)$row['companyId'];
         }
         
+        //Student: total first dose taken group by date
+        function getStudentFirstDoseTakenByDate(){
+            $qry = "SELECT
+                    firstDose,
+                    SUM(CASE WHEN(firstDose = firstDose) THEN 1 ELSE 0 END) AS 'total'
+                    FROM student WHERE firstDose IS NOT NULL
+                    GROUP BY firstDose
+                    ORDER BY firstDose ASC";
+            
+            $result = $this->con->query($qry);
+            $vax = array();
+            $rows = array();
+            foreach ($result as $row) {
+                $vax[] = $row;
+                $rows[] = $row;
+            }
+            
+            /*
+            foreach($vax as $row){
+                echo $row['firstDose'],"--->",$row['total']."<br>";
+            }
+            echo "<br>";
+            */
+
+            for($i=1;$i<count($vax);$i++){
+                for($j=0;$j<$i;$j++){
+                    $rows[$i]['total'] += $vax[$j]['total'];
+                }
+            }
+            return $rows;
         
+        }
+
+        //Student: total second dose taken group by date
+        function getStudentSecondDoseTakenByDate(){
+            $qry = "SELECT
+                    secondDose,
+                    SUM(CASE WHEN(secondDose = secondDose) THEN 1 ELSE 0 END) AS 'total'
+                    FROM student WHERE secondDose IS NOT NULL
+                    GROUP BY secondDose
+                    ORDER BY secondDose ASC";
+            
+            $result = $this->con->query($qry);
+            $vax = array();
+            $rows = array();
+            foreach ($result as $row) {
+                $vax[] = $row;
+                $rows[] = $row;
+            }
+
+            for($i=1;$i<count($vax);$i++){
+                for($j=0;$j<$i;$j++){
+                    $rows[$i]['total'] += $vax[$j]['total'];
+                }
+            }
+            return $rows;
+        }
+
+        //Staff: total first dose taken group by date
+        function getStaffFirstDoseTakenByDate(){
+            $qry = "SELECT
+                    firstDose,
+                    SUM(CASE WHEN(firstDose = firstDose) THEN 1 ELSE 0 END) AS 'total'
+                    FROM staff WHERE firstDose IS NOT NULL
+                    GROUP BY firstDose
+                    ORDER BY firstDose ASC";
+            
+            $result = $this->con->query($qry);
+            $vax = array();
+            $rows = array();
+            foreach ($result as $row) {
+                $vax[] = $row;
+                $rows[] = $row;
+            }
+
+            for($i=1;$i<count($vax);$i++){
+                for($j=0;$j<$i;$j++){
+                    $rows[$i]['total'] += $vax[$j]['total'];
+                }
+            }
+            return $rows;
+        
+        }
+
+        //Staff: total second dose taken group by date
+        function getStaffSecondDoseTakenByDate(){
+            $qry = "SELECT
+                    secondDose,
+                    SUM(CASE WHEN(secondDose = secondDose) THEN 1 ELSE 0 END) AS 'total'
+                    FROM staff WHERE secondDose IS NOT NULL
+                    GROUP BY secondDose
+                    ORDER BY secondDose ASC";
+            
+            $result = $this->con->query($qry);
+            $vax = array();
+            $rows = array();
+            foreach ($result as $row) {
+                $vax[] = $row;
+                $rows[] = $row;
+            }
+
+            for($i=1;$i<count($vax);$i++){
+                for($j=0;$j<$i;$j++){
+                    $rows[$i]['total'] += $vax[$j]['total'];
+                }
+            }
+            return $rows;
+        }
 
 
         /*-----------------------------------------------------------Student---------------------------------------------------------*/
