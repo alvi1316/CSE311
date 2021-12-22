@@ -485,7 +485,7 @@
             
         }
 
-        function updateStudentProfile($id,$dno,$vaxId,$doseTaken,$name,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
+        function updateStudentProfile($id,$dno,$vaxId,$doseTaken,$firstDose,$secondDose,$name,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
             $qry = "SELECT nsuId FROM student WHERE nsuId = $id";
             $result = $this->con->query($qry);
             if($result->num_rows > 0){
@@ -493,6 +493,8 @@
                     `dno`   = '$dno',
                     `vaxId` = '$vaxId',
                     `doseTaken` = '$doseTaken',
+                    `firstDose` = '$firstDose',
+                    `secondDose` = '$secondDose',
                     `name` = '$name',
                     `nsuMail` = '$nsuMail',
                     `phone` = '$phone',
@@ -605,7 +607,7 @@
             
         }
 
-        function updateStaffProfile($id,$dno,$vaxId,$doseTaken,$name,$designation,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
+        function updateStaffProfile($id,$dno,$vaxId,$doseTaken,$firstDose,$secondDose,$name,$designation,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
             $qry = "SELECT staffId FROM staff WHERE staffId = $id";
             $result = $this->con->query($qry);
             if($result->num_rows > 0){
@@ -613,6 +615,8 @@
                     `dno`   = '$dno',
                     `vaxId` = '$vaxId',
                     `doseTaken` = '$doseTaken',
+                    `firstDose` = '$firstDose',
+                    `secondDose` = '$secondDose',
                     `name` = '$name',
                     `designation` = '$designation',
                     `nsuMail` = '$nsuMail',
