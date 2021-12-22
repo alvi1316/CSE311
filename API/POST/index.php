@@ -169,6 +169,33 @@
         $data = $db->getAllDepartment();
         printJson(200, "OK", $data);        
 
+    }else if($requestType === 'addVax'){
+
+        $vaxName = $decoded["vaxName"] ?? null;
+        $company = $decoded["company"] ?? null;
+
+        $db = new dbmanager();
+        $data = $db->setVaccine($vaxName,$company);
+        printJson(200, "OK", $data);        
+
+    }else if($requestType === 'addDept'){
+        $dname = $decoded["dname"] ?? null;
+        $db = new dbmanager();
+        $data = $db->setDepartment($dname);
+        printJson(200, "OK", $data);        
+
+    }else if($requestType === 'deleteVax'){
+        $vaxName = $decoded["vaxName"] ?? null;
+        $db = new dbmanager();
+        $data = $db->removeVaccine($vaxName);
+        printJson(200, "OK", $data);        
+
+    }else if($requestType === 'deleteDept'){
+        $dname = $decoded["dname"] ?? null;
+        $db = new dbmanager();
+        $data = $db->removeDepartment($dname);
+        printJson(200, "OK", $data);        
+
     }else{
         printJson(404, "Not Found", null);
     }

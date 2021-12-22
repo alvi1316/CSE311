@@ -27,3 +27,56 @@ document.getElementById("logout").addEventListener("click",async function() {
         window.location.replace("adminlogin.php");
     }
 });
+
+document.getElementById("deleteVaxButton").addEventListener("click",async function() {
+    var vaxName = document.getElementById("deleteVaxName").value
+    var response = await fetchData('./API/POST/', {'requestType': 'deleteVax', 'vaxName': vaxName})
+    if(response.data){
+        alert("Vaccine deleted!")
+        window.location.replace("adminpanel.php")
+    }
+})
+
+document.getElementById("deleteDeptButton").addEventListener("click",async function() {
+    var dname = document.getElementById("deleteDeptName").value
+    var response = await fetchData('./API/POST/', {'requestType': 'deleteDept', 'dname': dname})
+    if(response.data){
+        alert("Department deleted!")
+        window.location.replace("adminpanel.php")
+    }
+})
+
+document.getElementById("addVaxButton").addEventListener("click",async function() {
+    var vaxName = document.getElementById("addVaxName").value
+    var company = document.getElementById("addCompName").value
+
+    if(vaxName != "" && company != ""){
+        var response = await fetchData('./API/POST/', {'requestType': 'addVax', 'vaxName': vaxName, 'company': company})
+        if(response.data){
+            alert("Vaccine added!")
+            window.location.replace("adminpanel.php")
+        }else{
+            alert("Failed!")
+        }
+    }else{
+        alert("Please enter vaccine name and company name!")
+    }
+
+    
+})
+
+document.getElementById("addDeptNameButton").addEventListener("click",async function() {
+    var dname = document.getElementById("addDeptName").value
+    if(dname!=""){
+        var response = await fetchData('./API/POST/', {'requestType': 'addDept', 'dname': dname})
+        if(response.data){
+            alert("Department Added!")
+            window.location.replace("adminpanel.php")
+        }else{
+            alert("Failed!")
+        }
+    }else{
+        alert("Please enter department name!")
+    }
+    
+})

@@ -125,3 +125,14 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+#my_div_1{
+    width: 80%;
+    height: 50px;
+    border: 2px solid black;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 5%;
+    text-align: center;
+}

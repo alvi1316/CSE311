@@ -22,6 +22,8 @@
     $ssdd = $db->getStudentSecondDoseTakenByDate();
     $ffdd = $db->getStaffFirstDoseTakenByDate();
     $fsdd = $db->getStaffSecondDoseTakenByDate();
+    $dno = $db->getAllDepartment();
+    $vno = $db->getAllVaccine();
 
 ?>
 
@@ -264,6 +266,43 @@
         <div id="graphchart2"></div>
         <div id="chart_div_2"></div>
         <div id="chart_div_3"></div>
+
+        <div id="my_div_1">
+            <div>
+                <label for="deleteVaxName">Delete Vaccine: </label>
+                <select id="deleteVaxName">
+                    <?php
+                        foreach($vno as $v){
+                            if($v['vaxName'] !== 'Not Vaccinated'){
+                                print("<option value ='{$v['vaxName']}'>{$v['vaxName']}</option>");
+                            }                                              
+                        }
+                    ?>
+                </select>
+                <button type = "button" id="deleteVaxButton"> Delete Vaccine</button>
+            
+                <label for="deleteDeptName">Delete Department: </label>
+                <select id="deleteDeptName">
+                    <?php
+                        foreach($dno as $d){
+                            print("<option value ='{$d['dname']}'>{$d['dname']}</option>");                                           
+                        }
+                    ?>
+                </select>
+                <button type="button" id="deleteDeptButton"> Delete Department </button>
+            </div>
+            <div>
+                <label for="addVaxName">Add vaccine: </label>
+                <input id="addVaxName" placeholder="Vaccine Name">
+                <input id="addCompName" placeholder="Company Name">
+                <button type="button" id="addVaxButton"> Add Vaccine </button>
+
+                <label for="addVaccine">Add Department: </label>
+                <input id="addDeptName" placeholder="Department Name">
+                <button type="button" id="addDeptNameButton"> Add Department </button>
+            </div>
+            
+        </div>
         <script src="./JS/adminpanel.js"></script>
         
     </body>
