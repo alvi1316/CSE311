@@ -227,8 +227,10 @@
         }
 
         function removeDepartment($dname){
-            $qry = "DELETE FROM department WHERE dname = '$dname'";
-            return $this->con->query($qry);
+            $qry1 = "DELETE FROM department WHERE dname = '$dname'";
+            $qry2 = "UPDATE student SET dno = 0 WHERE dno IS NULL";
+            $qry3 = "UPDATE staff SET dno = 0 WHERE dno IS NULL";
+            return $this->con->query($qry1) && $this->con->query($qry2) && $this->con->query($qry3);
         }
 
         function setVaccine($vaxName,$company){
@@ -253,8 +255,10 @@
         }
 
         function removeVaccine($vaxName){
-            $qry = "DELETE FROM vax WHERE vaxName = '$vaxName'";
-            return $this->con->query($qry);
+            $qry1 = "DELETE FROM vax WHERE vaxName = '$vaxName'";
+            $qry2 = "UPDATE student SET vaxId = 0 WHERE vaxId IS NULL";
+            $qry3 = "UPDATE staff SET vaxId = 0 WHERE vaxId IS NULL";
+            return $this->con->query($qry1) && $this->con->query($qry2) && $this->con->query($qry3);
         }
 
 
