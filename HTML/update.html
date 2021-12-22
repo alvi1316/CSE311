@@ -1,32 +1,53 @@
 <html>
-     <head>
-	    <title>NSU Vaccine Management System </title>
-       <link rel="stylesheet" href="update.css">
-	 
-     </head>
+    <head>
+        <title>NSU Vaccine Management System</title>
+        <link rel="stylesheet" href="update.css"> 
+    </head>
 
+    <body>
+        <NAV>
+            <label class = "logo">Profile</label>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </NAV>
 
-     <body>
-        <div class="update-form">
-	 <p align="center"> <img src="F:\Users\Nahin\Downloads\po.png" /> </p>
-	 <h1 align="center">NSU Vaccine Management System<h1>
-	 <hr>
-    <form>
-     
-     <input type="name" class="input-box" placeholder="Name">
-     <input type="NSUID" class="input-box" placeholder="ID">
-     <input type="name" class="input-box" placeholder="Name">
-     <input type="NSUID" class="input-box" placeholder="ID">
-     <input type="name" class="input-box" placeholder="Name">
-     <input type="NSUID" class="input-box" placeholder="ID">
-     <input type="name" class="input-box" placeholder="Name">
-     <input type="NSUID" class="input-box" placeholder="ID">
-     <p align="center"><button type="button" class="update-btn">Update</button></p> 
-       
-   </form>
-   </div>
-	 </body>
+        <div class="main">
+            <p  align="center" > <img src="F:\Users\Nahin\Desktop\logo2.jpg" > </p>
+            <h2 align="center">UPDATE INFO</h2>
 
-
-
+            <form class="form-inline" >
+                <label align="center" for="Name"></label>
+                <input type="Name" class="input-box" id="Name" placeholder="Enter Name" name="Name">
+                <label align="center" for="depNo"></label>
+                <input type="dnumber" class="input-box" id="dno" placeholder="Enter Deparment No." name="deptNo.">
+                <br><label align="center" for="mail"></label>
+                <input type="mail" class="input-box" id="mail" placeholder="Enter Mail" name="mail">
+                <label for="dosetaken"></label>
+                <input type="dosetaken" class="input-box" id="dosetaken" placeholder="Enter Dose Taken" name="dosetaken">
+                <br><label for="vaxid"></label>
+                <input type="vaxid" class="input-box" id="vaxid" placeholder="Enter Vaxid" name="vaxid">
+                <label for="phone"></label>
+                <input type="phone" class="input-box" id="phone" placeholder="Enter Phone" name="phone">  
+                <br><label for="NID"></label>
+                <input type="NID" class="input-box" id="NID" placeholder="Enter NID" name="NID">
+                <label for="dob"></label>
+                <input type="dob" class="input-box" id="dob" placeholder="Enter Date of Birth" name="dob"> 
+                <br><label for="city"></label>
+                <input type="city" class="input-box" id="city" placeholder="Enter City" name="city">
+                <label for="BRN"></label>
+                <input type="BRN" class="input-box" id="BRN" placeholder="Enter Birth Registration No." name="BRN">
+                <br><div class="dropdown">
+                    <button class="dropbtn">Gender</button>
+                    <div class="dropdown-content">
+                      <a href="#">Male</a>
+                      <a href="#">Female</a>
+                    </div>
+                  </div>
+                <br>
+                  <br><button type="update">Update</button>
+              </form>
+        </div>    
+    </body>
 </html>
