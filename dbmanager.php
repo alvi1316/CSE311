@@ -188,7 +188,7 @@
 
         //------------this function is used by Admin/student/staff
         function getStudentProfile($id){
-            $qry = "SELECT name,d.dname AS 'dept',nsuId,nsuMail,doseTaken,v.vaxName,phone,city,NID,DOB,birthRegNo,gender 
+            $qry = "SELECT name,d.dname AS 'dept',nsuId,nsuMail,doseTaken,firstDose,secondDose,v.vaxName,phone,city,NID,DOB,birthRegNo,gender 
                     FROM student s
                     JOIN department d
                     ON(s.dno=d.dno)
@@ -203,7 +203,7 @@
 
         //------------this function is used by Admin/student/staff
         function getStaffProfile($id){
-            $qry = "SELECT name,designation,d.dname AS 'dept',staffId,nsuMail,doseTaken,v.vaxName,phone,city,NID,DOB,birthRegNo,gender 
+            $qry = "SELECT name,designation,d.dname AS 'dept',staffId,nsuMail,doseTaken,firstDose,secondDose,v.vaxName,phone,city,NID,DOB,birthRegNo,gender 
                     FROM staff s
                     JOIN department d
                     ON(s.dno=d.dno)
