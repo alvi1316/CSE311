@@ -35,6 +35,17 @@ body{
 .sign-in-form p{
     font-size: 14px;
 }
+.sign-in-form label{
+    color: gray;
+    margin: 15px 0;
+}
+
+.sign-in-form select{
+    margin: 15px 0;
+    border-radius: 20px;
+    border: 1px solid #999;
+    outline: none;
+}
 
 .error{
     color: rgba(255, 0, 0, 0.8); 

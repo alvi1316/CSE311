@@ -10,12 +10,12 @@
       <h2 align="center">NSU Vaccine Management System<h2>
       <hr>
       <p id="error" class="error">Wrong id or password!</p>
-      <form id="signInForm">
+      <form>
         <input onblur="validateId()" id="idInput" name="id" type="number" class="input-box" placeholder="Your ID">
         <p id="idError" class="form-error">Please enter a ID</p>
         <input onblur="validatePassword()" id="passwordInput" name="password" type="Password" class="input-box" placeholder="Your Password">
         <p id="passwordError" class="form-error">Please enter a password</p>
-        <button type="submit" class="signin-btn">Sign in</button>
+        <button id="signInAdmin" type="button" class="signin-btn">Sign in</button>
       </form>
       <hr>
     </div>

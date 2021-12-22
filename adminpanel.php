@@ -243,9 +243,16 @@
 
         <ul>
             <li class="right-li"><a id="logout">Logout</a></li>
-            <li class="left-li"><input class="search-input" placeholder="NSU ID"></li>
-            <li class="left-li"><button class="search-button">Search</button></li>
-            
+            <form method = "get" action="searchprofile.php">
+                <li class="left-li"><input name="searchId" type="number" class="search-input" placeholder="NSU ID"></li>
+                <li class="left-li">
+                    <select class="search-type" name="userType">
+                        <option value="student">Student</option>
+                        <option value="facilty-member">Faculty-Member</option>
+                    </select>
+                </li>
+                <li class="left-li"><button type="submit" class="search-button">Search</button></li>
+            <form>            
         </ul>
 
         <div id="chart_div_1"></div>

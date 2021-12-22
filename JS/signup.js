@@ -39,6 +39,18 @@ function validateInput(input,error,regex) {
     }
 }
 
+function validateNidBid(){
+    var nid = document.getElementById("nidInput").value
+    var bid = document.getElementById("bidInput").value
+    if(nid == "" && bid == ""){
+        document.getElementById('nidBidError').style.display = "block"
+        return false
+    }else{
+        document.getElementById('nidBidError').style.display = "none"
+        return true
+    }
+}
+
 function validateForm(){
     var nameIsValid = validateInput("nameInput","nameError",/^[a-z A-Z]{1,40}$/g)
     var idIsValid = validateInput("idInput","idError",/^\d{10}$/g)
@@ -46,7 +58,8 @@ function validateForm(){
     var passwordIsValid = validateInput("passwordInput","passwordError",/^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}$/g)
     var password = document.getElementById("passwordInput").value
     var confirmPasswordIsValid = validateInput("confirmPasswordInput","confirmPasswordError",new RegExp(`^${password}$`,'g'))
-    return (nameIsValid && idIsValid && emailIsValid && passwordIsValid && confirmPasswordIsValid)
+    var nidBidIsValid = validateNidBid()
+    return (nameIsValid && idIsValid && emailIsValid && passwordIsValid && confirmPasswordIsValid && nidBidIsValid)
 }
 
 addDno();
@@ -63,6 +76,14 @@ document.getElementById("emailInput").addEventListener("blur", function (){
     validateInput("emailInput","emailError",/^(([a-z.\d])+\@northsouth.edu)$/gi)
 })
 
+document.getElementById("nidInput").addEventListener("blur", function (){
+    validateNidBid()
+})
+
+document.getElementById("bidInput").addEventListener("blur", function (){
+    validateNidBid()
+})
+
 document.getElementById("passwordInput").addEventListener("blur", function (){
     validateInput("passwordInput","passwordError",/^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}$/g)
 })
@@ -72,19 +93,23 @@ document.getElementById("confirmPasswordInput").addEventListener("blur", functio
     validateInput("confirmPasswordInput","confirmPasswordError",new RegExp(`^${password}$`,'g'))
 })
 
-document.getElementById("signUpForm").addEventListener("submit",async function (event){
-    event.preventDefault();
+document.getElementById("signUpButton").addEventListener("click",async function (event){
     if(validateForm()){
         var name = document.getElementById("nameInput").value
         var id = document.getElementById("idInput").value
         var email = document.getElementById("emailInput").value
+        var nid = document.getElementById("nidInput").value
+        var bid = document.getElementById("bidInput").value
         var password = document.getElementById("passwordInput").value
         var gender = document.getElementById("gender").value
         var dept = document.getElementById("dept").value
-        console.log(`${name} ${id} ${email} ${password} ${gender} ${dept}`)
-        var response = await fetchData('./API/POST/', {'requestType': 'signup', 'name' : name, 'id' : id, 'email' : email, 'password' : password, 'gender' : gender, 'dno' : dept})      
+        var userType = document.getElementById("usertype").value
+        var requestType = (userType=='student')?'studentSignup':'facultySignup'
+        nid = (nid=='')?null:nid
+        bid = (bid=='')?null:bid
+        var response = await fetchData('./API/POST/', {'requestType': requestType, 'name' : name, 'id' : id, 'email' : email, 'password' : password, 'gender' : gender, 'dno' : dept, 'nid' : nid, 'bid' : bid})      
         if(response.data){
-            this.submit()
+            alert("Sign up successful! Please Login to continue")
         }else{
             document.getElementById("error").style.display = "inline"
         }

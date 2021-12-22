@@ -1,0 +1,54 @@
+body{
+    margin:0;
+    padding:0;
+    background-color: #e8f5ff;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.right-li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+    cursor: pointer;
+}
+
+.main {
+    margin: 0 auto;
+    margin-top: 2%;
+    font-size: 28px;
+    padding: 0 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.main img{
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    display: block;
+}
+
+.main .card {
+    background-color: #fff;
+    border: solid #111;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 0 20px 20px;
+}

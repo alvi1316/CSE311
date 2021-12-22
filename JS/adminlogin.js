@@ -20,10 +20,9 @@ function validatePassword() {
     }
 }
 
-document.getElementById("signInForm").addEventListener("submit",login)
+document.getElementById("signInAdmin").addEventListener("click",login)
 
 function login(event) {
-    event.preventDefault();
     if(validateId() && validatePassword()){
         var id = document.getElementById("idInput").value
         var password = document.getElementById("passwordInput").value

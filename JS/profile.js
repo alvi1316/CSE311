@@ -24,6 +24,6 @@ async function fetchData(url, request){
 document.getElementById("logout").addEventListener("click",async function() {
     var response = await fetchData('./API/POST/', {'requestType': 'logout'})
     if(response.data){
-        window.location.replace("adminlogin.php");
+        window.location.replace("index.php");
     }
 });

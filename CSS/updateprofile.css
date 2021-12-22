@@ -1,0 +1,99 @@
+body{
+    margin:0;
+    padding:0;
+    background-color: #e8f5ff;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.right-li {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+    cursor: pointer;
+}
+
+.main {
+    margin: 0 auto;
+    margin-top: 2%;
+    padding: 0 10px;
+    width: 50%;
+    text-align: center;
+}
+ 
+form p {
+    float: left;
+    width: 49%;
+    margin-bottom: 1px;
+}
+
+.custom-p-margin{
+    margin-right: 2%;
+}
+
+form p:last-child {
+    clear: both;
+    width: 100%;
+}
+
+input{
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #999;
+    outline: none;
+}
+
+select{
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #999;
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.wrapper{
+    background-color: white;
+    height: 550px;
+    padding: 10px;
+    border: solid black;
+}
+
+.delete-button{
+    color: red;
+}
+
+.form-error{
+    font-size: 12px !important;
+    margin: 0px;
+    color: rgba(255, 0, 0, 0.8); 
+    display: none;
+}

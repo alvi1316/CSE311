@@ -20,15 +20,16 @@ function validatePassword() {
     }
 }
 
-document.getElementById("signInForm").addEventListener("submit",login)
+document.getElementById("signIn").addEventListener("click",login)
 
-function login(event) {
-    event.preventDefault();
+function login() {
     if(validateId() && validatePassword()){
         var id = document.getElementById("idInput").value
         var password = document.getElementById("passwordInput").value
+        var userType = document.getElementById("usertype").value
+        var requestType = (userType=='student')?'studentLogin':'facultyLogin'
 
-        var data = JSON.stringify({'requestType':'login',id:id,password:password})
+        var data = JSON.stringify({'requestType':requestType,id:id,password:password})
 
         fetch(
             './API/POST/',
@@ -49,7 +50,7 @@ function login(event) {
         .then(
             (res) => {
                 if(res.data){
-                    this.submit()
+                    window.location.replace("profile.php");
                 }else{
                     document.getElementById("error").style.display = "inline"
                 }

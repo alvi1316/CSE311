@@ -12,13 +12,31 @@
 
     $requestType = $decoded["requestType"] ?? null;
 
-    if($requestType === 'login'){
+    if($requestType === 'studentLogin'){
 
         $id = $decoded["id"] ?? null;
         $password = $decoded["password"] ?? null;
         $db = new dbmanager();
 
         if($db->studentSignin($id, $password)){
+            session_start();
+            $_SESSION['id'] = $id;
+            $_SESSION['userType'] = 'student';
+            printJson(200, "OK", true);
+        }else{
+            printJson(404, "Not Found", null);
+        }
+
+    }if($requestType === 'facultyLogin'){
+
+        $id = $decoded["id"] ?? null;
+        $password = $decoded["password"] ?? null;
+        $db = new dbmanager();
+
+        if($db->staffSignin($id, $password)){
+            session_start();
+            $_SESSION['id'] = $id;
+            $_SESSION['userType'] = 'faculty-member';
             printJson(200, "OK", true);
         }else{
             printJson(404, "Not Found", null);
@@ -43,7 +61,7 @@
         session_destroy();
         printJson(200, "OK", true);
 
-    }else if($requestType === 'signup'){
+    }else if($requestType === 'studentSignup'){
 
         $id = $decoded["id"] ?? null;
         $password = $decoded["password"] ?? null;
@@ -51,9 +69,95 @@
         $name = $decoded["name"] ?? null;
         $dno = $decoded["dno"] ?? null;
         $gender = $decoded["gender"] ?? null;
+        $nid = $decoded["nid"] ?? null;
+        $bid = $decoded["bid"] ?? null;
         $db = new dbmanager();
         
-        if($db->studentSignup($id,$password,$email,$name,$dno,$gender)){
+        if($db->studentSignup($id,$password,$email,$name,$dno,$nid,$bid,$gender)){
+            printJson(200, "OK", true);
+        }else{
+            printJson(404, "Not Found", null);
+        }     
+
+    }else if($requestType === 'facultySignup'){
+
+        $id = $decoded["id"] ?? null;
+        $password = $decoded["password"] ?? null;
+        $email = $decoded["email"] ?? null;
+        $name = $decoded["name"] ?? null;
+        $dno = $decoded["dno"] ?? null;
+        $gender = $decoded["gender"] ?? null;
+        $nid = $decoded["nid"] ?? null;
+        $bid = $decoded["bid"] ?? null;
+        $db = new dbmanager();
+        
+        if($db->staffSignup($id,$password,$email,$name,$dno,$nid,$bid,$gender)){
+            printJson(200, "OK", true);
+        }else{
+            printJson(404, "Not Found", null);
+        }     
+
+    }else if($requestType === 'studentUpdate'){
+        session_start();
+        $id = $_SESSION['id'] ?? null;
+        $name = $decoded["name"] ?? null;
+        $email = $decoded["email"] ?? null;
+        $phone = $decoded["phone"] ?? null;
+        $city = $decoded["city"] ?? null;
+        $dob = $decoded["dob"] ?? null;
+        $gender = $decoded["gender"] ?? null;
+        $nid = $decoded["nid"] ?? null;
+        $bid = $decoded["bid"] ?? null;
+        $dno = $decoded["dno"] ?? null;
+        $vax = $decoded["vax"] ?? null;
+        $dofd = $decoded["dofd"] ?? null;
+        $dosd = $decoded["dosd"] ?? null;
+        $doseTaken = 0;
+
+        if($dofd !== null){
+            $doseTaken = $doseTaken + 1;
+        }
+
+        if($dosd !== null){
+            $doseTaken = $doseTaken + 1;
+        }
+        
+        $db = new dbmanager();
+
+        if($db->updateStudentProfile($id,$dno,$vax,$doseTaken,$dofd,$dosd,$name,$email,$phone,$city,$nid,$dob,$bid,$gender)){
+            printJson(200, "OK", true);
+        }else{
+            printJson(404, "Not Found", false);
+        }    
+
+    }else if($requestType === 'facultyUpdate'){
+
+        session_start();
+        $id = $_SESSION["id"] ?? null;
+        $name = $decoded["name"] ?? null;
+        $email = $decoded["email"] ?? null;
+        $phone = $decoded["phone"] ?? null;
+        $city = $decoded["city"] ?? null;
+        $dob = $decoded["dob"] ?? null;
+        $gender = $decoded["gender"] ?? null;
+        $nid = $decoded["nid"] ?? null;
+        $bid = $decoded["bid"] ?? null;
+        $dno = $decoded["dno"] ?? null;
+        $vax = $decoded["vax"] ?? null;
+        $dofd = $decoded["dofd"] ?? null;
+        $dosd = $decoded["dosd"] ?? null;
+        $doseTaken = 0;
+
+        if($dofd != null){
+            $doseTaken = $doseTaken + 1;
+            if($dosd != null){
+                $doseTaken = $doseTaken + 1;
+            }
+        }
+        
+        $db = new dbmanager();
+        
+        if($db->updateStaffProfile($id,$dno,$vax,$doseTaken,$dofd,$dosd,$name,$email,$phone,$city,$nid,$dob,$bid,$gender)){
             printJson(200, "OK", true);
         }else{
             printJson(404, "Not Found", null);
