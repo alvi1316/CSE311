@@ -413,7 +413,7 @@
 
         //Student : Sign up or registration varification function 
         function studentSignup($id,$pasword,$mail,$name,$dno,$NID,$birthRegNo,$gender){
-            $sql = "INSERT INTO student (nsuId,password,nsuMail,name,dno,NID,birthRegNo,gender) VALUES ('$id','$pasword','$mail','$name','$dno','$NID','$birthRegNo','$gender')";
+            $sql = "INSERT INTO student (nsuId,password,nsuMail,name,dno,NID,birthRegNo,gender) VALUES ($id,'$pasword','$mail','$name',$dno,$NID,$birthRegNo,'$gender')";
         
             if($this->con->query($sql)){
                 return TRUE;
@@ -490,6 +490,8 @@
         }
 
         function updateStudentProfile($id,$dno,$vaxId,$doseTaken,$firstDose,$secondDose,$name,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
+            $dose1st= ($firstDose == null)?'firstDose = DEFAULT(firstDose),':"`firstDose` = '$firstDose',";
+            $dose2nd= ($secondDose == null)?'secondDose = DEFAULT(secondDose),':"`secondDose` = '$secondDose',";
             $qry = "SELECT nsuId FROM student WHERE nsuId = $id";
             $result = $this->con->query($qry);
             if($result->num_rows > 0){
@@ -497,15 +499,15 @@
                     `dno`   = '$dno',
                     `vaxId` = '$vaxId',
                     `doseTaken` = '$doseTaken',
-                    `firstDose` = '$firstDose',
-                    `secondDose` = '$secondDose',
+                    $dose1st
+                    $dose2nd
                     `name` = '$name',
                     `nsuMail` = '$nsuMail',
                     `phone` = '$phone',
                     `city` = '$city',
-                    `NID` = '$NID',
+                    `NID` = $NID,
                     `DOB` = '$DOB',
-                    `birthRegNo` = '$birthRegNo',
+                    `birthRegNo` = $birthRegNo,
                     `gender` = '$gender'
                     wHERE `nsuId` = $id";
                 return $this->con->query($qry);
@@ -532,12 +534,12 @@
                     $isValid = TRUE;
                 }
             }
-            return $isValid;
+            return $isValid;        
         }
 
         //staff : Sign up or registration varification function 
         function staffSignup($id,$pasword,$mail,$name,$dno,$NID,$birthRegNo,$gender){
-            $sql = "INSERT INTO staff (staffId,password,nsuMail,name,dno,NID,birthRegNo,gender) VALUES ('$id','$pasword','$mail','$name','$dno','$NID','$birthRegNo','$gender')";
+            $sql = "INSERT INTO staff (staffId,password,nsuMail,name,dno,NID,birthRegNo,gender) VALUES ($id,'$pasword','$mail','$name',$dno,$NID,$birthRegNo,'$gender')";
             
             if($this->con->query($sql)){
                 return TRUE;
@@ -612,6 +614,8 @@
         }
 
         function updateStaffProfile($id,$dno,$vaxId,$doseTaken,$firstDose,$secondDose,$name,$designation,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
+            $dose1st= ($firstDose == null)?'firstDose = DEFAULT(firstDose),':"`firstDose` = '$firstDose',";
+            $dose2nd= ($secondDose == null)?'secondDose = DEFAULT(secondDose),':"`secondDose` = '$secondDose',";
             $qry = "SELECT staffId FROM staff WHERE staffId = $id";
             $result = $this->con->query($qry);
             if($result->num_rows > 0){
@@ -619,8 +623,8 @@
                     `dno`   = '$dno',
                     `vaxId` = '$vaxId',
                     `doseTaken` = '$doseTaken',
-                    `firstDose` = '$firstDose',
-                    `secondDose` = '$secondDose',
+                    $dose1st
+                    $dose2nd
                     `name` = '$name',
                     `designation` = '$designation',
                     `nsuMail` = '$nsuMail',
