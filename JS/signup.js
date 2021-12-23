@@ -15,7 +15,7 @@ async function fetchData(url, request){
             body: JSON.stringify(request), // body data type must match "Content-Type" header
         },
     ).then(res => {
-        //res.clone().text().then(function(data) {console.log(data)})
+        res.clone().text().then(function(data) {console.log(data)})
         return res.json()
     });
 
@@ -105,8 +105,9 @@ document.getElementById("signUpButton").addEventListener("click",async function 
         var dept = document.getElementById("dept").value
         var userType = document.getElementById("usertype").value
         var requestType = (userType=='student')?'studentSignup':'facultySignup'
-        nid = (nid=='')?null:nid
-        bid = (bid=='')?null:bid
+        nid = (nid=='')?'null':nid
+        bid = (bid=='')?'null':bid
+        
         var response = await fetchData('./API/POST/', {'requestType': requestType, 'name' : name, 'id' : id, 'email' : email, 'password' : password, 'gender' : gender, 'dno' : dept, 'nid' : nid, 'bid' : bid})      
         if(response.data){
             alert("Sign up successful! Please Login to continue")

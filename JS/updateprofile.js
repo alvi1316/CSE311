@@ -112,9 +112,9 @@ document.getElementById("updateButton").addEventListener("click",async function 
         dob = (dob=='')?null:dob
         var gender = document.getElementById("genderInput").value
         var nid = document.getElementById("nidInput").value
-        nid = (nid=='')?null:nid
+        nid = (nid=='')?'null':nid
         var bid = document.getElementById("bidInput").value
-        bid = (bid=='')?null:bid
+        bid = (bid=='')?'null':bid
         var dept = document.getElementById("deptInput").value
         var vax = document.getElementById("vaxInput").value
         var dofd = document.getElementById("dofdInput").value
