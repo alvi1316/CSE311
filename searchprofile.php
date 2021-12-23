@@ -47,7 +47,6 @@
         ?>
 
         <div class="main">
-            <img src="./Pictures/logo2.jpg">
             <h3>Profile Information</h3>
             <div class="card">
                 <table>

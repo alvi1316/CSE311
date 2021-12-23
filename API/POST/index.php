@@ -133,7 +133,7 @@
     }else if($requestType === 'facultyUpdate'){
 
         session_start();
-        $id = $_SESSION["id"] ?? null;
+        $id = $_SESSION['id'] ?? null;
         $name = $decoded["name"] ?? null;
         $email = $decoded["email"] ?? null;
         $phone = $decoded["phone"] ?? null;
@@ -148,20 +148,20 @@
         $dosd = $decoded["dosd"] ?? null;
         $doseTaken = 0;
 
-        if($dofd != null){
+        if($dofd !== null){
             $doseTaken = $doseTaken + 1;
-            if($dosd != null){
-                $doseTaken = $doseTaken + 1;
-            }
+        }
+
+        if($dosd !== null){
+            $doseTaken = $doseTaken + 1;
         }
         
         $db = new dbmanager();
-        
-        if($db->updateStaffProfile($id,$dno,$vax,$doseTaken,$dofd,$dosd,$name,$email,$phone,$city,$nid,$dob,$bid,$gender)){
+        if($db->updateStaffProfile($id,$dno,$vax,$doseTaken,$dofd,$dosd,$name,null,$email,$phone,$city,$nid,$dob,$bid,$gender)){
             printJson(200, "OK", true);
         }else{
-            printJson(404, "Not Found", null);
-        }     
+            printJson(404, "Not Found", false);
+        }         
 
     }else if($requestType === 'deleteStudentAccount'){
         

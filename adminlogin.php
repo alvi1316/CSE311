@@ -7,7 +7,8 @@
 
   <body>
     <div class="sign-in-form">
-      <h2 align="center">NSU Vaccine Management System<h2>
+      <h2 align="center">NSU Vaccine Management System</h2>
+      <h3 align="center">Admin Login</h3>
       <hr>
       <p id="error" class="error">Wrong id or password!</p>
       <form>

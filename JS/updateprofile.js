@@ -47,21 +47,47 @@ function validateNidBid(){
 function validateDose(){
     var dofd = document.getElementById("dofdInput").value
     var dosd = document.getElementById("dosdInput").value
+    var vax = document.getElementById("vaxInput").value
     var dofd1 = new Date(dofd)
     var dosd1 = new Date(dosd)  
+    var result = true;
 
     if(dofd == "" && dosd != ""){
         document.getElementById('doseError1').style.display = "block"
         document.getElementById('doseError2').style.display = "none"
-        return false
-    }else if(dofd1.getTime() >= dosd1.getTime()){
+        document.getElementById('doseError3').style.display = "none"
+        document.getElementById('doseError4').style.display = "none"
+        result =  false
+    }
+    if(dofd1.getTime() >= dosd1.getTime()){
         document.getElementById('doseError1').style.display = "none"
-        document.getElementById('doseError2').style.display = "block"        
-        return false
-    }else{
+        document.getElementById('doseError2').style.display = "block"
+        document.getElementById('doseError3').style.display = "none"
+        document.getElementById('doseError4').style.display = "none"        
+        result =  false
+    }
+    if(vax == '0' && dofd != ""){
         document.getElementById('doseError1').style.display = "none"
         document.getElementById('doseError2').style.display = "none"
+        document.getElementById('doseError3').style.display = "block"
+        document.getElementById('doseError4').style.display = "none" 
+        result =  false
+    }
+    if(vax != '0' && dofd == ''){
+        document.getElementById('doseError1').style.display = "none"
+        document.getElementById('doseError2').style.display = "none"
+        document.getElementById('doseError3').style.display = "none"
+        document.getElementById('doseError4').style.display = "block"
+        result =  false
+    }
+    if(result){
+        document.getElementById('doseError1').style.display = "none"
+        document.getElementById('doseError2').style.display = "none"
+        document.getElementById('doseError3').style.display = "none"
+        document.getElementById('doseError4').style.display = "none"
         return true
+    }else{
+        return false
     }
 }
 
@@ -86,6 +112,10 @@ document.getElementById("dofdInput").addEventListener("blur", function (){
 })
 
 document.getElementById("dosdInput").addEventListener("blur", function (){
+    validateDose()
+})
+
+document.getElementById("vaxInput").addEventListener("blur", function (){
     validateDose()
 })
 

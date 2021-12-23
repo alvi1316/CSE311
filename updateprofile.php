@@ -8,7 +8,12 @@
 
     require_once("dbmanager.php");
     $db = new dbmanager();
-    $sp = $db->getStudentProfile($_SESSION['id']);
+    $sp = null;
+    if($_SESSION['userType'] === 'student'){
+        $sp = $db->getStudentProfile($_SESSION['id']);
+    }else{
+        $sp = $db->getStaffProfile($_SESSION['id']);
+    }
     $dno = $db->getAllDepartment();
     $vno = $db->getAllVaccine();
 ?>
@@ -139,6 +144,14 @@
                                     
                         <p style="width:100%;" id="doseError2" class="form-error">
                             <label>First dose date cannot be after Second dose date!</label>
+                        </p>
+
+                        <p style="width:100%;" id="doseError3" class="form-error">
+                            <label>You have to enter vaccine name if you enter vaccine date!</label>
+                        </p>
+
+                        <p style="width:100%;" id="doseError4" class="form-error">
+                            <label>You have to enter vaccine date if you add vaccine name!</label>
                         </p>
                         
                         <p>

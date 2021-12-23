@@ -14,13 +14,17 @@
       <hr>
 
       <form>
-        <input type="email" class="input-box" placeholder="NSU Email">
-        <p class="form-error">Please enter a valid NSU email</p>
+        <input id="emailInput" type="text" class="input-box" placeholder="NSU Email">
+        <p id="emailError" class="form-error">Please enter a valid NSU email</p>
 
-        <button type="button" class="signin-btn">Reset password</button>        
+        <button type="button" id="resetButton" class="signin-btn">Reset password</button>        
         <hr>
       </form>
     </div>
+
+    <script src="./JS/forgotpassword.js"></script>
+    
+
   </body>
 
 </html>
