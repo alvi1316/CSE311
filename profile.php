@@ -5,7 +5,7 @@
     if(!isset($_SESSION['id'])){
         header('Location: index.php');
     }
-    
+
     require_once("dbmanager.php");
     $db = new dbmanager();
     $sp = null;
@@ -14,7 +14,8 @@
     }else{
         $sp = $db->getStaffProfile($_SESSION['id']);
     }
-
+    $tvs = $db->getTotalVaccinatedStudent();
+    $tvf = $db->getTotalVaccinatedStaff();
 ?>
 
 
@@ -23,6 +24,44 @@
     <head>
         <title>NSU Vaccine Management System</title>
         <link rel="stylesheet" href="./CSS/profile.css"> 
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                var data1 = google.visualization.arrayToDataTable([
+                    ['Type', 'Student Count'],
+                    ['Fully Vaccinated',     <?php echo "{$tvs['full']}";?>],
+                    ['Non Vaccinated', <?php echo "{$tvs['non']}";?>],
+                    ['Half Vaccinated', <?php echo "{$tvs['half']}";?>]                    
+                ]);
+
+                var options1 = {
+                    title: 'Total Students Stats',
+                };
+
+                var data2 = google.visualization.arrayToDataTable([
+                    ['Type', 'Faculty-members Count'],
+                    ['Fully Vaccinated',     <?php echo "{$tvf['full']}";?>],
+                    ['Non Vaccinated', <?php echo "{$tvf['non']}";?>],
+                    ['Half Vaccinated', <?php echo "{$tvf['half']}";?>]                    
+                ]);
+
+                var options2 = {
+                    title: 'Total Faculty-members Stats',
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+
+                chart.draw(data1, options1);
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+                chart.draw(data2, options2);
+            }
+        </script>
     </head>
 
     <body>
@@ -31,8 +70,7 @@
             <li class="right-li"><a href="updateprofile.php">Edit Profile</a></li>       
         </ul>
 
-        <div class="main">
-            <img src="./Pictures/logo2.jpg">
+        <div class="main">            
             <h3>Profile Information</h3>
             <div class="card">
                 <table>
@@ -119,6 +157,12 @@
                 </table>
             </div>
         </div>    
+        
+        <h3 align="center">University Stats</h3>
+        <div id="piechart">
+            <div id="piechart1"></div>
+            <div id="piechart2"></div>
+        </div> 
 
         <script src="./JS/profile.js"></script>
     </body>

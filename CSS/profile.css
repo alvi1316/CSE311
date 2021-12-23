@@ -38,17 +38,33 @@ li a:hover:not(.active) {
     text-align: center;
 }
 
-.main img{
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-    display: block;
-}
-
 .main .card {
     background-color: #fff;
     border: solid #111;
     height: auto;
     margin-bottom: 20px;
     padding: 20px 0 20px 20px;
+}
+
+#piechart{
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+#piechart1{
+    width: 49%;
+    height: 300px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+#piechart2{
+    width: 49%;
+    height: 300px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    display: inline-block;
 }

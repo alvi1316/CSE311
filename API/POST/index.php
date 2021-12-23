@@ -163,6 +163,56 @@
             printJson(404, "Not Found", null);
         }     
 
+    }else if($requestType === 'deleteStudentAccount'){
+        
+        session_start();
+        $id = $_SESSION["id"] ?? null;
+        $db = new dbmanager();
+        if($db->deleteStudentAccount($id)){
+            printJson(200, "OK", true);  
+        }else{
+            printJson(404, "Not Found", false);
+        }
+
+    }else if($requestType === 'deleteFacultyAccount'){
+
+        session_start();
+        $id = $_SESSION["id"] ?? null;
+        $db = new dbmanager();
+        if($db->deleteStaffAccount($id)){
+            printJson(200, "OK", true);  
+        }else{
+            printJson(404, "Not Found", false);
+        }      
+
+    }else if($requestType === 'studentUpdatePassword'){
+
+        session_start();
+        $id = $_SESSION["id"] ?? null;
+        $oldPassword = $decoded["oldPassword"] ?? null;
+        $newPassword = $decoded["newPassword"] ?? null;
+
+        $db = new dbmanager();
+        if($db->studentChangePassword($id,$oldPassword,$newPassword)){
+            printJson(200, "OK", true);  
+        }else{
+            printJson(404, "Not Found", false);
+        }      
+
+    }else if($requestType === 'facultyUpdatePassword'){
+
+        session_start();
+        $id = $_SESSION["id"] ?? null;
+        $oldPassword = $decoded["oldPassword"] ?? null;
+        $newPassword = $decoded["newPassword"] ?? null;
+
+        $db = new dbmanager();
+        if($db->staffChangePassword($id,$oldPassword,$newPassword)){
+            printJson(200, "OK", true);  
+        }else{
+            printJson(404, "Not Found", false);
+        }      
+
     }else if($requestType === 'getDno'){
 
         $db = new dbmanager();

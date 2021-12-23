@@ -111,6 +111,7 @@ document.getElementById("signUpButton").addEventListener("click",async function 
         var response = await fetchData('./API/POST/', {'requestType': requestType, 'name' : name, 'id' : id, 'email' : email, 'password' : password, 'gender' : gender, 'dno' : dept, 'nid' : nid, 'bid' : bid})      
         if(response.data){
             alert("Sign up successful! Please Login to continue")
+            window.location.replace("index.php")
         }else{
             document.getElementById("error").style.display = "inline"
         }

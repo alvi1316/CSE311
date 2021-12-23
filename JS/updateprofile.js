@@ -96,6 +96,22 @@ document.getElementById("logout").addEventListener("click",async function() {
     }
 });
 
+document.getElementById("deleteAccountButton").addEventListener("click",async function() {
+
+    if(confirm("Do you really want to delete your account?")){
+
+        var userType = document.getElementById("userType").value
+        var requestType = (userType=='student')?'deleteStudentAccount':'deleteFacultyAccount'
+
+        var response = await fetchData('./API/POST/', {'requestType': requestType})
+        if(response.data){
+            alert("Account Deleted!")
+            window.location.replace("index.php");
+        }
+
+    }    
+});
+
 document.getElementById("updateButton").addEventListener("click",async function (event){
     var nameIsValid = validateInput("nameInput","nameError",/^[a-z A-Z]{1,40}$/g)
     var emailIsValid = validateInput("emailInput","emailError",/^(([a-z.\d])+\@northsouth.edu)$/gi)

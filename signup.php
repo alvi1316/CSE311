@@ -29,7 +29,7 @@
         <p id="nidBidError" class="form-error">You have to provide your NID or Your Birth Certificate</p>
 
         <input id="passwordInput" type="Password" class="input-box" placeholder="Your Password">
-        <p id="passwordError" class="form-error">Password length must be minimum 8 character and should contain atleast one character and one number</p>
+        <p id="passwordError" class="form-error">Password length must be 8-10 character and should contain atleast one character and one number</p>
 
         <input id="confirmPasswordInput" type="password" class="input-box" placeholder="Confirm Your Password">
         <p id="confirmPasswordError" class="form-error">Password doesn't match</p>
@@ -41,6 +41,8 @@
             <option value="F">Female</option>
             <option value="O">Other</option>
           </select>
+        </div>
+        <div>
           <label for="dept">Department:</label>
           <select name="dept" id="dept">          
           </select>

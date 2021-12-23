@@ -24,6 +24,7 @@
     <body>
         <ul>
             <li class="right-li"><a id="logout">Logout</a></li>     
+            <li class="right-li"><a href="changepassword.php">Change Password</a></li>  
             <li class="right-li"><a href="profile.php">Home</a></li>       
         </ul>
 
@@ -142,7 +143,7 @@
                         
                         <p>
                             <button type="button" id = "updateButton">Update</button>
-                            <button type="button" class = "delete-button">Delete Account</button>
+                            <button type="button" id="deleteAccountButton" class = "delete-button">Delete Account</button>
                         </p>
                         
                     </form>
