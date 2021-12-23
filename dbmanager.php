@@ -490,8 +490,9 @@
         }
 
         function updateStudentProfile($id,$dno,$vaxId,$doseTaken,$firstDose,$secondDose,$name,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
-            $dose1st= ($firstDose == null)?'firstDose = DEFAULT(firstDose),':"`firstDose` = '$firstDose',";
-            $dose2nd= ($secondDose == null)?'secondDose = DEFAULT(secondDose),':"`secondDose` = '$secondDose',";
+            $dose1st = ($firstDose == null)? 'firstDose = DEFAULT(firstDose),':"`firstDose` = '$firstDose',";
+            $dose2nd = ($secondDose == null)? 'secondDose = DEFAULT(secondDose),':"`secondDose` = '$secondDose',";
+            $dob = ($DOB == null)? 'DOB = DEFAULT(DOB),':"`DOB` = '$DOB',";
             $qry = "SELECT nsuId FROM student WHERE nsuId = $id";
             $result = $this->con->query($qry);
             if($result->num_rows > 0){
@@ -506,7 +507,7 @@
                     `phone` = '$phone',
                     `city` = '$city',
                     `NID` = $NID,
-                    `DOB` = '$DOB',
+                    $dob
                     `birthRegNo` = $birthRegNo,
                     `gender` = '$gender'
                     wHERE `nsuId` = $id";
@@ -616,6 +617,7 @@
         function updateStaffProfile($id,$dno,$vaxId,$doseTaken,$firstDose,$secondDose,$name,$designation,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
             $dose1st= ($firstDose == null)?'firstDose = DEFAULT(firstDose),':"`firstDose` = '$firstDose',";
             $dose2nd= ($secondDose == null)?'secondDose = DEFAULT(secondDose),':"`secondDose` = '$secondDose',";
+            $dob = ($DOB == null)? 'DOB = DEFAULT(DOB),':"`DOB` = '$DOB',";
             $qry = "SELECT staffId FROM staff WHERE staffId = $id";
             $result = $this->con->query($qry);
             if($result->num_rows > 0){
@@ -630,9 +632,9 @@
                     `nsuMail` = '$nsuMail',
                     `phone` = '$phone',
                     `city` = '$city',
-                    `NID` = '$NID',
+                    $dob
                     `DOB` = '$DOB',
-                    `birthRegNo` = '$birthRegNo',
+                    `birthRegNo` = $birthRegNo,
                     `gender` = '$gender'
                     wHERE `staffId` = $id";
                 return $this->con->query($qry);
