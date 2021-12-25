@@ -425,39 +425,57 @@
 
         }
 
-        //Student : reset password function 
-        function studentResetPassword($id) {
-            //checking id the user found or not
-            $qry = "SELECT password FROM student WHERE nsuId = $id";
-            $result = $this->con->query($qry);
-            $row = $result->fetch_assoc();
+        //Reset password function 
+        function resetPassword($mail) { 
+            $student = "SELECT password FROM student WHERE nsuMail = '$mail'";
+            $staff = "SELECT password FROM staff WHERE nsuMail = '$mail'";
+            $studentResult = $this->con->query($student);
+            $staffResult = $this->con->query($staff);
+            $studentRow = $studentResult->fetch_assoc();
+            $staffRow = $staffResult->fetch_assoc();
 
-            if($row == NULL){
-                //echo "User not found. <br>";
+            if($studentRow == NULL && $staffRow == NULL){
+                //echo "user not found. <br>";
                 return FALSE; //Not found
-            }else{
+            }
+            
+            if($studentRow != NULL && $staffRow == NULL){
                 $helper = new dbhelper();
                 //genarating a new random password
-                $newpass = $helper->getRandomPassword();
-                //echo "<br>New password: ".$newpass."<br>";
+                $newPass = $helper->getRandomPassword();
+                //echo "<br>New password: ".$newPass."<br>";
 
                 //updating new password for the user
                 $success = FALSE;
-                $sql = "UPDATE student SET password = '$newpass' WHERE student.nsuId = $id";
+                $sql = "UPDATE student SET password = '$newPass' WHERE student.nsuMail = '$mail'";
                 if($this->con->query($sql)){
-                    $success = TRUE;
-                } 
-                
-                //sending new password in users mail
-                $qry = "SELECT password,nsuMail FROM student WHERE nsuId = $id"; //get the updated password fron db
-                $result = $this->con->query($qry);
-                $newrow = $result->fetch_assoc();
-                //echo "<br>New password: ".$newrow['password']."<br>";
-                //echo  "New password has been sent to: " .  $newrow['nsumail'] . "<br>"; //email
+                    $qry = "SELECT password, nsuMail FROM student WHERE nsuMail = '$mail'"; //get the updated password fron db
+                    $result = $this->con->query($qry);
+                    $info = $result->fetch_assoc();
+                    $to = $info['nsuMail'];
+                    $success = $helper->sendNewPassword($to,$newPass);
+                }
                 return $success;
             }
 
-            
+            if($studentRow == NULL && $staffRow != NULL){
+                $helper = new dbhelper();
+                //genarating a new random password
+                $newPass = $helper->getRandomPassword();
+                //echo "<br>New password: ".$newPass."<br>";
+
+                //updating new password for the user
+                $success = FALSE;
+                $sql = "UPDATE staff SET password = '$newPass' WHERE staff.nsuMail = '$mail'";
+                if($this->con->query($sql)){
+                    $qry = "SELECT password, nsuMail FROM staff WHERE nsuMail = '$mail'"; //get the updated password fron db
+                    $result = $this->con->query($qry);
+                    $info = $result->fetch_assoc();
+                    $to = $info['nsuMail'];
+                    $success = $helper->sendNewPassword($to,$newPass);
+                }
+                return $success;
+            }
         }
 
         //Student : change password function
