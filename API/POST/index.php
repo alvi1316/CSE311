@@ -246,6 +246,14 @@
         $data = $db->removeDepartment($dname);
         printJson(200, "OK", $data);        
 
+    }else if($requestType === 'resetPassword'){
+        $email = $decoded["email"] ?? null;
+        $db = new dbmanager();
+        if($db->resetPassword($email)){
+            printJson(200, "OK", true);  
+        }else{
+            printJson(404, "Not Found", false);
+        }      
     }else{
         printJson(404, "Not Found", null);
     }

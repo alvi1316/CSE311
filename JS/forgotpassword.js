@@ -34,7 +34,13 @@ function validateInput(input,error,regex) {
 
 document.getElementById("resetButton").addEventListener("click",async function (){
     if(validateInput("emailInput","emailError",/^(([a-z.\d])+\@northsouth.edu)$/gi)){
-        
+        var email = document.getElementById('emailInput').value
+        var response = await fetchData('./API/POST/', {'requestType': 'resetPassword', 'email' : email})
+        if(response.data){
+            alert("Your new password is sent to your email!")
+        }else{
+            alert("Password reset failed!")
+        }
     }
 })
 
