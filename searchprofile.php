@@ -120,12 +120,12 @@
                             <td><?php echo $sp['vaxName'];?></td>
                         </tr>
                         <tr>
-                            <td>Vaccine Name</td>
+                            <td>1st Dose Date</td>
                             <td>:</td>
                             <td><?php echo $sp['firstDose'];?></td>
                         </tr>
                         <tr>
-                            <td>Vaccine Name</td>
+                            <td>2nd Dose Date</td>
                             <td>:</td>
                             <td><?php echo $sp['secondDose'];?></td>
                         </tr>
