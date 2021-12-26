@@ -393,6 +393,27 @@
             return $rows;
         }
 
+        //showing all departments 
+        function showDepartment(){
+            $sql = "SELECT dname FROM `department` ORDER BY `dno` ASC";
+            $result = $this->con->query($sql);
+            $rows = array();
+            foreach ($result as $row) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+
+        //showing all vax info
+        function showVaxInfo(){
+            $sql = "SELECT vaxName,company FROM `vax` AS a JOIN `vaxcompany` AS b ON(a.companyId=b.companyId)";
+            $result = $this->con->query($sql);
+            $rows = array();
+            foreach ($result as $row) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }
 
         /*-----------------------------------------------------------Student---------------------------------------------------------*/
         //Student : Sign In varification function
@@ -650,8 +671,8 @@
                     `nsuMail` = '$nsuMail',
                     `phone` = '$phone',
                     `city` = '$city',
+                    `NID` = $NID,
                     $dob
-                    `DOB` = '$DOB',
                     `birthRegNo` = $birthRegNo,
                     `gender` = '$gender'
                     wHERE `staffId` = $id";
