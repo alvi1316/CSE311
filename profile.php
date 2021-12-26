@@ -22,7 +22,7 @@
 
 <html>
     <head>
-        <title>NSU Vaccine Management System</title>
+        <title>NSUVMS | Profile</title>
         <link rel="stylesheet" href="./CSS/profile.css"> 
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">

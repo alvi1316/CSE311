@@ -40,6 +40,7 @@ document.getElementById("resetButton").addEventListener("click",async function (
         document.getElementById("resetButton").disabled = false;
         if(response.data){
             alert("Your new password is sent to your email!")
+            window.location.replace("index.php");
         }else{
             alert("Password reset failed!")
         }

@@ -28,7 +28,7 @@
 
 <html>
     <head>
-        <title>NSU Vaccine Management System</title>
+        <title>NSUVMS | Search</title>
         <link rel="stylesheet" href="./CSS/profile.css"> 
     </head>
 

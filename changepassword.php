@@ -12,7 +12,7 @@
 <html>
 
     <head>
-        <title>NSU Vaccine Management System</title>
+        <title>NSUVMS | Change Password</title>
         <link rel="stylesheet" href="./CSS/changepassword.css"> 
     </head>
 

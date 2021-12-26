@@ -24,13 +24,14 @@
     $fsdd = $db->getStaffSecondDoseTakenByDate();
     $dno = $db->getAllDepartment();
     $vno = $db->getAllVaccine();
-
+    $vaxInfo = $db->showVaxInfo();
 ?>
 
 <!DOCTYPE html>
 <html>
 
     <head>
+        <title>NSUVMS | Admin Panel</title>
         <link rel="stylesheet" href="./CSS/adminpanel.css">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
@@ -303,6 +304,41 @@
             </div>
             
         </div>
+
+        <div id="my_div_2">
+
+            <div id="table1">            
+                <table>
+                    <tr>
+                        <th>Department Name</th>
+                    </tr>
+                    <?php
+                        foreach($dno as $d){
+                            if($d['dname']!=='No Department'){
+                                print("<tr><td>{$d['dname']}</td></tr>");   
+                            }                                                                    
+                        }
+                    ?>                   
+                </table>
+            </div>
+
+            <div id="table2">
+                <table>
+                    <tr>
+                        <th>Vaccine Name</th>
+                        <th>Vaccine Company</th>
+                    </tr>
+                    <?php
+                        foreach($vaxInfo as $v){
+                            if($v['vaxName']!=='Not Vaccinated'){
+                                print("<tr><td>{$v['vaxName']}</td><td>{$v['company']}</td></tr>");   
+                            }                                                                    
+                        }
+                    ?>
+                </table>
+            </div>
+        </div>
+
         <script src="./JS/adminpanel.js"></script>
         
     </body>

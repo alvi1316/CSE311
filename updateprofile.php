@@ -22,7 +22,7 @@
 <html>
 
     <head>
-        <title>NSU Vaccine Management System</title>
+        <title>NSUVMS | Update Profile</title>
         <link rel="stylesheet" href="./CSS/updateprofile.css"> 
     </head>
 

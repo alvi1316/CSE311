@@ -1,7 +1,7 @@
 <html>
 
   <head>
-    <title>NSUVMS | Signup </title>
+    <title>NSUVMS | Signup</title>
     <link rel="stylesheet" href="./CSS/signup.css">
   </head>
 

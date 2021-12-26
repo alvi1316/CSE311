@@ -135,4 +135,35 @@ input[type=number] {
     margin-bottom: 20px;
     padding: 10px 5%;
     text-align: center;
+    background-color: white;
+}
+
+
+#my_div_2{
+    width: 80%;
+    border: 2px solid black;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 5%;
+    text-align: center;
+    background-color: white;
+    display: flex;
+}
+
+#table1{
+    flex: 0 0 50%;
+}
+
+#table2{
+    flex: 1;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+
+table{
+    border-collapse: collapse;
 }

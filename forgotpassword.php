@@ -1,7 +1,7 @@
 <html>
 
   <head>
-    <title>NSUVMS | Forgotpassword</title>
+    <title>NSUVMS | Forgot password</title>
     <link rel="stylesheet" href="./CSS/forgotpassword.css">
   </head>
 
