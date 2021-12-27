@@ -203,10 +203,12 @@
 
         //------------this function is used by Admin/student/staff
         function getStaffProfile($id){
-            $qry = "SELECT name,designation,d.dname AS 'dept',staffId,nsuMail,doseTaken,firstDose,secondDose,v.vaxName,phone,city,NID,DOB,birthRegNo,gender 
+            $qry = "SELECT name,deName AS 'designation',d.dname AS 'dept',staffId,nsuMail,doseTaken,firstDose,secondDose,v.vaxName,phone,city,NID,DOB,birthRegNo,gender 
                     FROM staff s
                     JOIN department d
                     ON(s.dno=d.dno)
+                    JOIN designation de 
+                    ON(s.designationId=de.designationId)
                     JOIN vax v
                     ON(s.vaxId=v.vaxId)
                     WHERE staffId = $id";
@@ -216,6 +218,7 @@
             return $row;
         }
 
+        //Admin adding and removing power functions
         function setDepartment($dname){
             $qry = "INSERT INTO department (dname) VALUES ('$dname')";
             if($this->con->query($qry)){
@@ -261,6 +264,20 @@
             return $this->con->query($qry1) && $this->con->query($qry2) && $this->con->query($qry3);
         }
 
+        function setDesignation($deName){
+            $qry = "INSERT INTO designation (deName) VALUES ('$deName')";
+            if($this->con->query($qry)){
+                return TRUE;
+            } 
+            else{
+                return FALSE;
+            }
+        }
+        function removeDesignation($deName){
+            $qry1 = "DELETE FROM designation WHERE deName = '$deName'";
+            $qry2 = "UPDATE staff SET designationId = 0 WHERE designationId IS NULL";
+            return $this->con->query($qry1) && $this->con->query($qry2);
+        }
 
         //-----Private functions for setVaccine() support
         private function setVaxCompany($company){
@@ -653,7 +670,7 @@
             
         }
 
-        function updateStaffProfile($id,$dno,$vaxId,$doseTaken,$firstDose,$secondDose,$name,$designation,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
+        function updateStaffProfile($id,$dno,$vaxId,$designationId,$doseTaken,$firstDose,$secondDose,$name,$nsuMail,$phone,$city,$NID,$DOB,$birthRegNo,$gender){
             $dose1st= ($firstDose == null)?'firstDose = DEFAULT(firstDose),':"`firstDose` = '$firstDose',";
             $dose2nd= ($secondDose == null)?'secondDose = DEFAULT(secondDose),':"`secondDose` = '$secondDose',";
             $dob = ($DOB == null)? 'DOB = DEFAULT(DOB),':"`DOB` = '$DOB',";
@@ -663,11 +680,11 @@
                 $qry = "UPDATE `staff` SET
                     `dno`   = '$dno',
                     `vaxId` = '$vaxId',
+                    `designationId` = '$designationId',
                     `doseTaken` = '$doseTaken',
                     $dose1st
                     $dose2nd
                     `name` = '$name',
-                    `designation` = '$designation',
                     `nsuMail` = '$nsuMail',
                     `phone` = '$phone',
                     `city` = '$city',
@@ -702,6 +719,16 @@
 
         function getAllVaccine(){
             $sql = "SELECT * FROM `vax` ORDER BY `vaxId` ASC";
+            $result = $this->con->query($sql);
+            $rows = array();
+            foreach ($result as $row) {
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+
+        function getAllDesignation(){
+            $sql = "SELECT * FROM `designation` ORDER BY `designationId` ASC";
             $result = $this->con->query($sql);
             $rows = array();
             foreach ($result as $row) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2021 at 09:57 AM
+-- Generation Time: Dec 27, 2021 at 08:22 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -58,7 +58,6 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`dno`, `dname`) VALUES
-(0, 'No Department'),
 (8, 'Arch'),
 (2, 'BBA'),
 (4, 'CEE'),
@@ -66,7 +65,30 @@ INSERT INTO `department` (`dno`, `dname`) VALUES
 (1, 'ECE'),
 (6, 'ECO'),
 (5, 'ENG'),
-(7, 'LAW');
+(7, 'LAW'),
+(0, 'No Department');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `designation`
+--
+
+CREATE TABLE `designation` (
+  `designationId` int(5) NOT NULL,
+  `deName` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `designation`
+--
+
+INSERT INTO `designation` (`designationId`, `deName`) VALUES
+(2, 'Assistant Professor'),
+(3, 'Lecturer'),
+(0, 'No Designation'),
+(4, 'Officer'),
+(1, 'Professor');
 
 -- --------------------------------------------------------
 
@@ -78,12 +100,12 @@ CREATE TABLE `staff` (
   `staffId` bigint(10) NOT NULL,
   `dno` int(5) DEFAULT NULL,
   `vaxId` int(5) DEFAULT 0,
+  `designationId` int(5) DEFAULT 0,
   `doseTaken` int(1) DEFAULT 0,
   `firstDose` date DEFAULT NULL,
   `secondDose` date DEFAULT NULL,
   `password` varchar(10) NOT NULL,
   `name` varchar(40) NOT NULL,
-  `designation` varchar(20) DEFAULT NULL,
   `nsuMail` varchar(40) NOT NULL,
   `phone` varchar(11) DEFAULT NULL,
   `city` varchar(10) DEFAULT NULL,
@@ -97,17 +119,17 @@ CREATE TABLE `staff` (
 -- Dumping data for table `staff`
 --
 
-INSERT INTO `staff` (`staffId`, `dno`, `vaxId`, `doseTaken`, `firstDose`, `secondDose`, `password`, `name`, `designation`, `nsuMail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
-(1852854758, 1, 1, 2, '2021-06-03', '2021-07-31', 'xbcgsa', 'Mohammad Forhad Uddin', 'Professor', 'mohammad.forhad@northsouth.edu', '01727463535', 'DHAKA', '94479791', '1972-04-08', NULL, 'M'),
-(2353029203, 4, 2, 1, '2021-06-11', NULL, 'fgdfg', 'Ziaul Haque', 'Lecturer', 'ziaul.haque@northsouth.edu', '01867746259', 'DHAKA', '77922633', '1989-04-09', NULL, 'M'),
-(3740793446, 2, 2, 2, '2021-07-13', '2021-09-22', 'acasew', 'Rezaul Karim', 'Lecturer', 'rezaul.karim@northsouth.edu', '01923746252', 'DHAKA', '79922644', '1977-03-01', NULL, 'M'),
-(5990164093, 3, 3, 2, '2021-08-08', '2021-09-23', 'erterw', 'Azreen Benazir', 'Assistant Lecturer', 'azreen.benazir@northsouth.edu', '01836251036', 'DHAKA', '41945528', '1980-05-09', NULL, 'F'),
-(9893264910, 5, 0, 0, NULL, NULL, 'ertret', 'Shafin Rahman', 'Lecturer', 'shafin.rahman@northsouth.edu', '01678251035', 'DHAKA', '12945556', '1987-03-09', NULL, 'M'),
-(1112767429, 1, 4, 1, '2021-07-11', NULL, 'aghste123', 'Shafiul Alam', 'Professor', 'shafiul.alam@northsouth.edu', '01727463555', 'DHAKA', '13369251', '1975-04-08', NULL, 'M'),
-(2053181255, 2, 5, 2, '2021-08-17', '2021-09-17', 'fgdfg43', 'Farisul Islam', 'Lecturer', 'farisul.islam@northsouth.edu', '01368846259', 'DHAKA', '20418928', '1988-04-09', NULL, 'M'),
-(1924768620, 3, 3, 2, '2021-09-10', '2021-10-22', 'acasew55', 'Rizvin Kabir', 'Lecturer', 'rizvinkabir@northsouth.edu', '01733746252', 'DHAKA', '20330717', '1975-03-01', NULL, 'F'),
-(1583073355, 5, 4, 1, '2021-06-09', NULL, 'e67rterw', 'Munira Khan', 'Assistant Professor', 'munira.khan@northsouth.edu', '01666251036', 'DHAKA', '18249243', '1989-05-09', NULL, 'F'),
-(1909782731, 6, 0, 0, NULL, NULL, 'e99rtret', 'Golam Rabbani', 'Lecturer', 'golam.rabbani@northsouth.edu', '01778251035', 'DHAKA', '12077268', '1986-03-09', NULL, 'M');
+INSERT INTO `staff` (`staffId`, `dno`, `vaxId`, `designationId`, `doseTaken`, `firstDose`, `secondDose`, `password`, `name`, `nsuMail`, `phone`, `city`, `NID`, `DOB`, `birthRegNo`, `gender`) VALUES
+(1112767429, 1, 4, 3, 1, '2021-07-11', NULL, 'aghste123', 'Shafiul Alam', 'shafiul.alam@northsouth.edu', '01727463555', 'DHAKA', '13369251', '1975-04-08', NULL, 'M'),
+(1583073355, 5, 4, 1, 1, '2021-06-09', NULL, 'e67rterw', 'Munira Khan', 'munira.khan@northsouth.edu', '01666251036', 'DHAKA', '18249243', '1989-05-09', NULL, 'F'),
+(1852854758, 1, 1, 1, 2, '2021-06-03', '2021-07-31', 'xbcgsa', 'Mohammad Forhad Uddin', 'mohammad.forhad@northsouth.edu', '01727463535', 'DHAKA', '94479791', '1972-04-08', NULL, 'M'),
+(1909782731, 6, 0, 4, 0, NULL, NULL, 'e99rtret', 'Golam Rabbani', 'golam.rabbani@northsouth.edu', '01778251035', 'DHAKA', '12077268', '1986-03-09', NULL, 'M'),
+(1924768620, 3, 3, 3, 2, '2021-09-10', '2021-10-22', 'acasew55', 'Rizvin Kabir', 'rizvinkabir@northsouth.edu', '01733746252', 'DHAKA', '20330717', '1975-03-01', NULL, 'F'),
+(2053181255, 2, 5, 4, 2, '2021-08-17', '2021-09-17', 'fgdfg43', 'Farisul Islam', 'farisul.islam@northsouth.edu', '01368846259', 'DHAKA', '20418928', '1988-04-09', NULL, 'M'),
+(2353029203, 4, 2, 2, 1, '2021-06-11', NULL, 'fgdfg', 'Ziaul Haque', 'ziaul.haque@northsouth.edu', '01867746259', 'DHAKA', '77922633', '1989-04-09', NULL, 'M'),
+(3740793446, 2, 2, 3, 2, '2021-07-13', '2021-09-22', 'acasew', 'Rezaul Karim', 'rezaul.karim@northsouth.edu', '01923746252', 'DHAKA', '79922644', '1977-03-01', NULL, 'M'),
+(5990164093, 3, 3, 1, 2, '2021-08-08', '2021-09-23', 'erterw', 'Azreen Benazir', 'azreen.benazir@northsouth.edu', '01836251036', 'DHAKA', '41945528', '1980-05-09', NULL, 'F'),
+(9893264910, 5, 0, 2, 0, NULL, NULL, 'ertret', 'Shafin Rahman', 'shafin.rahman@northsouth.edu', '01678251035', 'DHAKA', '12945556', '1987-03-09', NULL, 'M');
 
 -- --------------------------------------------------------
 
@@ -148,7 +170,7 @@ INSERT INTO `student` (`nsuId`, `dno`, `vaxId`, `doseTaken`, `firstDose`, `secon
 (2014534632, 2, 2, 2, '2021-09-05', '2021-10-05', 'jon123', 'Jon Doe', 'jon.doe@northsouth.edu', '01725367846', 'COMILLA', '014579352', '1999-01-21', NULL, 'M'),
 (2023554652, 5, 2, 1, '2021-06-21', NULL, 'asesa32', 'Sadia Islam', 'sadia.islam@northsouth.edu', '01856747416', 'DHAKA', '73544523', '2002-02-25', '81322515', 'F'),
 (2024521642, 4, 2, 1, '2021-09-21', NULL, 'play@1', 'Janntul Ferdaus', 'jannatul.ferdaus03@northsouth.edu', '01530898915', 'CUMILLA', '98745473', '2000-04-29', '16283457', 'F'),
-(2033124642, 7, 1, 2, '2021-5-30', '2021-07-18', '@rrr123', 'Abrar Mahmud', 'abrar.mahmud02@northsouth.edu', '01965478123', 'KHULNA', '99734736', '2001-10-23', '60568282', 'M'),
+(2033124642, 7, 1, 2, '2021-05-30', '2021-07-18', '@rrr123', 'Abrar Mahmud', 'abrar.mahmud02@northsouth.edu', '01965478123', 'KHULNA', '99734736', '2001-10-23', '60568282', 'M'),
 (2033232642, 6, 0, 0, NULL, NULL, 'B007', 'Shanto Islam', 'shanto.islam03@northsouth.edu', '01698788915', 'DHAKA', '85234754', '2000-02-18', '68384763', 'M'),
 (2112370642, 5, 2, 2, '2021-05-24', '2021-07-12', 'hasan121', 'S M Mahedi Hasan', 'mahedi.hasan06@northsouth.edu', '01621887399', 'DHAKA', '98645131', '2001-08-19', '30993819', 'M'),
 (2113452642, 7, 1, 2, '2021-07-31', '2021-11-15', 'UseLess32', 'Zahid hasan', 'zahid.hasan08@northsouth.edu', '01985498915', 'CHOTTOGRAM', '34523736', '2000-07-07', '24088795', 'M'),
@@ -195,9 +217,9 @@ CREATE TABLE `vaxcompany` (
 --
 
 INSERT INTO `vaxcompany` (`companyId`, `company`) VALUES
-(0, 'No Company'),
 (2, 'BioNTech'),
 (3, 'Johnson'),
+(0, 'No Company'),
 (1, 'Novavax'),
 (4, 'Oxford');
 
@@ -221,6 +243,13 @@ ALTER TABLE `department`
   ADD UNIQUE KEY `dname` (`dname`);
 
 --
+-- Indexes for table `designation`
+--
+ALTER TABLE `designation`
+  ADD PRIMARY KEY (`designationId`),
+  ADD UNIQUE KEY `dname` (`deName`);
+
+--
 -- Indexes for table `staff`
 --
 ALTER TABLE `staff`
@@ -229,7 +258,8 @@ ALTER TABLE `staff`
   ADD UNIQUE KEY `NID` (`NID`),
   ADD UNIQUE KEY `birthRegNo` (`birthRegNo`),
   ADD KEY `dno` (`dno`),
-  ADD KEY `vaxId` (`vaxId`);
+  ADD KEY `vaxId` (`vaxId`),
+  ADD KEY `designationId` (`designationId`);
 
 --
 -- Indexes for table `student`
@@ -269,6 +299,12 @@ ALTER TABLE `department`
   MODIFY `dno` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `designation`
+--
+ALTER TABLE `designation`
+  MODIFY `designationId` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `vax`
 --
 ALTER TABLE `vax`
@@ -289,7 +325,8 @@ ALTER TABLE `vaxcompany`
 --
 ALTER TABLE `staff`
   ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`dno`) REFERENCES `department` (`dno`) ON DELETE SET NULL,
-  ADD CONSTRAINT `staff_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`) ON DELETE SET NULL;
+  ADD CONSTRAINT `staff_ibfk_2` FOREIGN KEY (`vaxId`) REFERENCES `vax` (`vaxId`) ON DELETE SET NULL,
+  ADD CONSTRAINT `staff_ibfk_3` FOREIGN KEY (`designationId`) REFERENCES `designation` (`designationId`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `student`
