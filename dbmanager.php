@@ -218,6 +218,7 @@
             return $row;
         }
 
+        //Admin adding and removing power functions
         function setDepartment($dname){
             $qry = "INSERT INTO department (dname) VALUES ('$dname')";
             if($this->con->query($qry)){
@@ -263,6 +264,20 @@
             return $this->con->query($qry1) && $this->con->query($qry2) && $this->con->query($qry3);
         }
 
+        function setDesignation($deName){
+            $qry = "INSERT INTO designation (deName) VALUES ('$deName')";
+            if($this->con->query($qry)){
+                return TRUE;
+            } 
+            else{
+                return FALSE;
+            }
+        }
+        function removeDesignation($deName){
+            $qry1 = "DELETE FROM designation WHERE deName = '$deName'";
+            $qry2 = "UPDATE staff SET designationId = 0 WHERE designationId IS NULL";
+            return $this->con->query($qry1) && $this->con->query($qry2);
+        }
 
         //-----Private functions for setVaccine() support
         private function setVaxCompany($company){
