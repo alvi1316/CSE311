@@ -272,11 +272,21 @@
 
         <div class="form-control" id="my_div_1">
 
-            <div class="action">
+            <div class="col1">
+                <div class="row1">
+                    <label for="deleteVaxName">Delete Vaccine: </label>
+                </div>
+                <div class="row1">
+                    <label for="deleteDeptName">Delete Department: </label>
+                </div>
+                <div class="row1">
+                    <label for="deleteDesigName">Delete Designation: </label>
+                </div>
+            </div>
+
+            <div class="col2">
 
                 <div>
-
-                    <label for="deleteVaxName">Delete Vaccine: </label>
                     <select id="deleteVaxName">
                         <?php
                             foreach($vno as $v){
@@ -287,16 +297,16 @@
                         ?>
                     </select>
                     <button type = "button" id="deleteVaxButton"> Delete Vaccine</button>
-
                 </div>
 
                 
                 <div>
-                    <label for="deleteDeptName">Delete Department: </label>
                     <select id="deleteDeptName">
                         <?php
                             foreach($dno as $d){
-                                print("<option value ='{$d['dname']}'>{$d['dname']}</option>");                                           
+                                if($d['dname'] !== 'No Department'){
+                                    print("<option value ='{$d['dname']}'>{$d['dname']}</option>");
+                                };                                           
                             }
                         ?>
                     </select>
@@ -304,7 +314,6 @@
                 </div>
 
                 <div>
-                    <label for="deleteDesigName">Delete Designation: </label>
                     <select id="deleteDesigName">
                         <?php
                             foreach($desig as $d){
@@ -319,23 +328,33 @@
 
             </div>
 
-            <div class="form">
-
-                <div>
+            <div class="col1">
+                <div class="row1">
                     <label for="addVaxName">Add vaccine: </label>
+                </div>
+                <div class="row1">
+                    <label for="addVaccine">Add Department: </label>
+                </div>
+                <div class="row1">
+                    <label for="addDesigName">Add Designation: </label>
+                </div>
+            </div>
+
+
+            <div class="col3">
+
+                <div>                    
                     <input id="addVaxName" placeholder="Vaccine Name">
                     <input id="addCompName" placeholder="Company Name">
                     <button type="button" id="addVaxButton"> Add Vaccine </button>
                 </div>
                 
-                <div>
-                    <label for="addVaccine">Add Department: </label>
+                <div>                    
                     <input id="addDeptName" placeholder="Department Name">
                     <button type="button" id="addDeptNameButton"> Add Department </button>
                 </div>
 
-                <div>
-                    <label for="addDesigName">Add Designation: </label>
+                <div>                    
                     <input id="addDesigName" placeholder="Designation Name">
                     <button type="button" id="addDesigButton"> Add Designation </button>
                 </div>              

@@ -42,10 +42,10 @@
 			$mail->Port = "587";
 			$mail->Username = "dataque.academy@gmail.com";
 			$mail->Password = "data01001";
-			$mail->Subject = "NSUVAX reset password!";
+			$mail->Subject = "NSUVMS password recovery";
 			$mail->setFrom('dataque.academy@gmail.com');
 			$mail->isHTML(true);
-			$mail->Body = "<h1 style=\"color: #20B2AA;\">Dear user!</h1><p>You have requested to change the password of your NSUVAX account! "
+			$mail->Body = "<h1>Dear user,</h1><p>You have requested to change the password of your NSUVMS account! "
 							. "We have assigned a new password for your account.</p>"
 							. "<p>The new password for your account is: <b>". $newPass ."</b></p>";
 
