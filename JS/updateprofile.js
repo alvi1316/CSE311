@@ -169,7 +169,9 @@ document.getElementById("updateButton").addEventListener("click",async function 
         dosd = (dosd=='')?null:dosd
         var userType = document.getElementById("userType").value
         var requestType = (userType=='student')?'studentUpdate':'facultyUpdate'
-        var response = await fetchData('./API/POST/', {'requestType': requestType, 'name' : name, 'email' : email, 'phone' : phone, 'city' : city, 'dob' : dob, 'gender' : gender, 'nid' : nid, 'bid' : bid, 'dno' : dept, 'vax' : vax, 'dofd' : dofd, 'dosd' : dosd})      
+        var desig = (userType=='student')?'null':document.getElementById("desig").value
+        
+        var response = await fetchData('./API/POST/', {'requestType': requestType, 'name' : name, 'desig' : desig, 'email' : email, 'phone' : phone, 'city' : city, 'dob' : dob, 'gender' : gender, 'nid' : nid, 'bid' : bid, 'dno' : dept, 'vax' : vax, 'dofd' : dofd, 'dosd' : dosd})      
 
         if(response.data){
             alert("Update Successful!")

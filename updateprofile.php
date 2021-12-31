@@ -16,6 +16,7 @@
     }
     $dno = $db->getAllDepartment();
     $vno = $db->getAllVaccine();
+    $desig = $db->getAllDesignation();
 ?>
 
 
@@ -37,7 +38,7 @@
             <h2>Update Information</h2>
             <input type="hidden" id="userType" value="<?php print($_SESSION['userType']);?>">
             <div class="contain">
-                <div class="wrapper">              
+                <div class="wrapper" <?php if($_SESSION['userType']=='faculty-member'){print("style='height:590px;'");} ?>>              
                     <form>
                         <p class="custom-p-margin">
                             <label for="nameInput">Name</label>
@@ -153,6 +154,24 @@
                         <p style="width:100%;" id="doseError4" class="form-error">
                             <label>You have to enter vaccine date if you add vaccine name!</label>
                         </p>
+
+                        <?php
+                            if($_SESSION['userType']=='faculty-member'){
+                                print(" <p style='width:100%;'>
+                                            <label for='desig'>Designation</label>
+                                            <select id='desig'>
+                                ");
+                                foreach($desig as $d){
+                                    if($d['deName'] === $sp['designation']){
+                                        print("<option value ='{$d['designationId']}' selected>{$d['deName']}</option>");
+                                    }else{
+                                        print("<option value ='{$d['designationId']}'>{$d['deName']}</option>");
+                                    }                               
+                                }
+                                print("</select>");
+                            }
+
+                        ?>                        
                         
                         <p>
                             <button type="button" id = "updateButton">Update</button>

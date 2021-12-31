@@ -25,6 +25,8 @@
     $dno = $db->getAllDepartment();
     $vno = $db->getAllVaccine();
     $vaxInfo = $db->showVaxInfo();
+    $desig = $db->getAllDesignation();
+
 ?>
 
 <!DOCTYPE html>
@@ -301,6 +303,24 @@
                 <label for="addVaccine">Add Department: </label>
                 <input id="addDeptName" placeholder="Department Name">
                 <button type="button" id="addDeptNameButton"> Add Department </button>
+
+            </div>
+            <div>
+                <label for="addDesigName">Add Designation: </label>
+                <input id="addDesigName" placeholder="Designation Name">
+                <button type="button" id="addDesigButton"> Add Designation </button>
+
+                <label for="deleteDesigName">Delete Designation: </label>
+                <select id="deleteDesigName">
+                    <?php
+                        foreach($desig as $d){
+                            if($d['deName'] !== 'No Designation'){
+                                print("<option value ='{$d['deName']}'>{$d['deName']}</option>");
+                            }                                              
+                        }
+                    ?>
+                </select>
+                <button type="button" id="deleteDesigButton"> Delete Designation </button>
             </div>
             
         </div>

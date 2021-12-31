@@ -16,6 +16,7 @@
     }
     $tvs = $db->getTotalVaccinatedStudent();
     $tvf = $db->getTotalVaccinatedStaff();
+    
 ?>
 
 
@@ -103,6 +104,17 @@
                             <td>:</td>
                             <td><?php echo $sp['dept'];?></td>
                         </tr>
+                        <?php
+                            if($_SESSION['userType'] === 'faculty-member'){
+                                print("
+                                    <tr>
+                                        <td>Designation</td>
+                                        <td>:</td>
+                                        <td>{$sp['designation']}</td>
+                                    </tr>
+                                ");
+                            }
+                        ?>
                         <tr>
                             <td>Phone</td>
                             <td>:</td>

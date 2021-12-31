@@ -146,6 +146,7 @@
         $vax = $decoded["vax"] ?? null;
         $dofd = $decoded["dofd"] ?? null;
         $dosd = $decoded["dosd"] ?? null;
+        $desig = $decoded["desig"] ?? null;
         $doseTaken = 0;
 
         if($dofd !== null){
@@ -157,7 +158,8 @@
         }
         
         $db = new dbmanager();
-        if($db->updateStaffProfile($id,$dno,$vax,$doseTaken,$dofd,$dosd,$name,null,$email,$phone,$city,$nid,$dob,$bid,$gender)){
+
+        if($db->updateStaffProfile($id,$dno,$vax,$desig,$doseTaken,$dofd,$dosd,$name,$email,$phone,$city,$nid,$dob,$bid,$gender)){
             printJson(200, "OK", true);
         }else{
             printJson(404, "Not Found", false);
@@ -234,6 +236,12 @@
         $data = $db->setDepartment($dname);
         printJson(200, "OK", $data);        
 
+    }else if($requestType === 'addDesig'){
+        $desig = $decoded["desig"] ?? null;
+        $db = new dbmanager();
+        $data = $db->setDesignation($desig);
+        printJson(200, "OK", $data);        
+
     }else if($requestType === 'deleteVax'){
         $vaxName = $decoded["vaxName"] ?? null;
         $db = new dbmanager();
@@ -244,6 +252,12 @@
         $dname = $decoded["dname"] ?? null;
         $db = new dbmanager();
         $data = $db->removeDepartment($dname);
+        printJson(200, "OK", $data);        
+
+    }else if($requestType === 'deleteDesig'){
+        $desig = $decoded["desig"] ?? null;
+        $db = new dbmanager();
+        $data = $db->removeDesignation($desig);
         printJson(200, "OK", $data);        
 
     }else if($requestType === 'resetPassword'){

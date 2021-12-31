@@ -34,6 +34,8 @@ document.getElementById("deleteVaxButton").addEventListener("click",async functi
     if(response.data){
         alert("Vaccine deleted!")
         window.location.replace("adminpanel.php")
+    }else{
+        alert("Delete failed!")
     }
 })
 
@@ -43,6 +45,8 @@ document.getElementById("deleteDeptButton").addEventListener("click",async funct
     if(response.data){
         alert("Department deleted!")
         window.location.replace("adminpanel.php")
+    }else{
+        alert("Delete failed!")
     }
 })
 
@@ -79,4 +83,31 @@ document.getElementById("addDeptNameButton").addEventListener("click",async func
         alert("Please enter department name!")
     }
     
+})
+
+document.getElementById("addDesigButton").addEventListener("click",async function() {
+    var desig = document.getElementById("addDesigName").value
+    if(desig!=""){
+        var response = await fetchData('./API/POST/', {'requestType': 'addDesig', 'desig': desig})
+        if(response.data){
+            alert("Designation Added!")
+            window.location.replace("adminpanel.php")
+        }else{
+            alert("Failed!")
+        }
+    }else{
+        alert("Please enter designation name!")
+    }
+    
+})
+
+document.getElementById("deleteDesigButton").addEventListener("click",async function() {
+    var desig = document.getElementById("deleteDesigName").value
+    var response = await fetchData('./API/POST/', {'requestType': 'deleteDesig', 'desig': desig})
+    if(response.data){
+        alert("Department deleted!")
+        window.location.replace("adminpanel.php")
+    }else{
+        alert("Delete failed!")
+    }
 })
