@@ -270,57 +270,76 @@
         <div id="chart_div_2"></div>
         <div id="chart_div_3"></div>
 
-        <div id="my_div_1">
-            <div>
-                <label for="deleteVaxName">Delete Vaccine: </label>
-                <select id="deleteVaxName">
-                    <?php
-                        foreach($vno as $v){
-                            if($v['vaxName'] !== 'Not Vaccinated'){
-                                print("<option value ='{$v['vaxName']}'>{$v['vaxName']}</option>");
-                            }                                              
-                        }
-                    ?>
-                </select>
-                <button type = "button" id="deleteVaxButton"> Delete Vaccine</button>
-            
-                <label for="deleteDeptName">Delete Department: </label>
-                <select id="deleteDeptName">
-                    <?php
-                        foreach($dno as $d){
-                            print("<option value ='{$d['dname']}'>{$d['dname']}</option>");                                           
-                        }
-                    ?>
-                </select>
-                <button type="button" id="deleteDeptButton"> Delete Department </button>
+        <div class="form-control" id="my_div_1">
+
+            <div class="action">
+
+                <div>
+
+                    <label for="deleteVaxName">Delete Vaccine: </label>
+                    <select id="deleteVaxName">
+                        <?php
+                            foreach($vno as $v){
+                                if($v['vaxName'] !== 'Not Vaccinated'){
+                                    print("<option value ='{$v['vaxName']}'>{$v['vaxName']}</option>");
+                                }                                              
+                            }
+                        ?>
+                    </select>
+                    <button type = "button" id="deleteVaxButton"> Delete Vaccine</button>
+
+                </div>
+
+                
+                <div>
+                    <label for="deleteDeptName">Delete Department: </label>
+                    <select id="deleteDeptName">
+                        <?php
+                            foreach($dno as $d){
+                                print("<option value ='{$d['dname']}'>{$d['dname']}</option>");                                           
+                            }
+                        ?>
+                    </select>
+                    <button type="button" id="deleteDeptButton"> Delete Department </button>
+                </div>
+
+                <div>
+                    <label for="deleteDesigName">Delete Designation: </label>
+                    <select id="deleteDesigName">
+                        <?php
+                            foreach($desig as $d){
+                                if($d['deName'] !== 'No Designation'){
+                                    print("<option value ='{$d['deName']}'>{$d['deName']}</option>");
+                                }                                              
+                            }
+                        ?>
+                    </select>
+                    <button type="button" id="deleteDesigButton"> Delete Designation </button>
+                </div>
+
             </div>
-            <div>
-                <label for="addVaxName">Add vaccine: </label>
-                <input id="addVaxName" placeholder="Vaccine Name">
-                <input id="addCompName" placeholder="Company Name">
-                <button type="button" id="addVaxButton"> Add Vaccine </button>
 
-                <label for="addVaccine">Add Department: </label>
-                <input id="addDeptName" placeholder="Department Name">
-                <button type="button" id="addDeptNameButton"> Add Department </button>
+            <div class="form">
 
-            </div>
-            <div>
-                <label for="addDesigName">Add Designation: </label>
-                <input id="addDesigName" placeholder="Designation Name">
-                <button type="button" id="addDesigButton"> Add Designation </button>
+                <div>
+                    <label for="addVaxName">Add vaccine: </label>
+                    <input id="addVaxName" placeholder="Vaccine Name">
+                    <input id="addCompName" placeholder="Company Name">
+                    <button type="button" id="addVaxButton"> Add Vaccine </button>
+                </div>
+                
+                <div>
+                    <label for="addVaccine">Add Department: </label>
+                    <input id="addDeptName" placeholder="Department Name">
+                    <button type="button" id="addDeptNameButton"> Add Department </button>
+                </div>
 
-                <label for="deleteDesigName">Delete Designation: </label>
-                <select id="deleteDesigName">
-                    <?php
-                        foreach($desig as $d){
-                            if($d['deName'] !== 'No Designation'){
-                                print("<option value ='{$d['deName']}'>{$d['deName']}</option>");
-                            }                                              
-                        }
-                    ?>
-                </select>
-                <button type="button" id="deleteDesigButton"> Delete Designation </button>
+                <div>
+                    <label for="addDesigName">Add Designation: </label>
+                    <input id="addDesigName" placeholder="Designation Name">
+                    <button type="button" id="addDesigButton"> Add Designation </button>
+                </div>              
+
             </div>
             
         </div>
@@ -345,8 +364,11 @@
             <div id="table2">
                 <table>
                     <tr>
-                        <th>Vaccine Name</th>
-                        <th>Vaccine Company</th>
+                        <th colspan="2">Vaccine</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Company</th>
                     </tr>
                     <?php
                         foreach($vaxInfo as $v){
@@ -357,6 +379,23 @@
                     ?>
                 </table>
             </div>
+
+            <div id="table3">
+                <table>
+                    <tr>
+                        <th>Designation</th>
+                    </tr>
+
+                    <?php
+                        foreach($desig as $d){
+                            if($d['deName']!=='No Designation'){
+                                print("<tr><td>{$d['deName']}</td></tr>");   
+                            }                                                                    
+                        }
+                    ?>
+                </table>
+            </div>
+
         </div>
 
         <script src="./JS/adminpanel.js"></script>

@@ -126,18 +126,19 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-#my_div_1{
-    width: 80%;
-    height: 75px;
+.form-control{
+    width: 90%;
+    height: 100%;
     border: 2px solid black;
     margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 10px 5%;
-    text-align: center;
     background-color: white;
+    display: flex;
+    justify-content: space-around;
 }
 
+.action,.form{
+    padding: 20px 0;
+}
 
 #my_div_2{
     width: 80%;
@@ -152,18 +153,23 @@ input[type=number] {
 }
 
 #table1{
-    flex: 0 0 50%;
+    flex: 0 0 33%;
 }
 
 #table2{
-    flex: 1;
+    flex: 0 0 33%;
+}
+
+#table3{
+    flex: 0 0 33%;
 }
 
 td, th {
     border: 1px solid #dddddd;
-    text-align: left;
+    text-align: center;
 }
 
 table{
     border-collapse: collapse;
+    margin: 0 auto;
 }
